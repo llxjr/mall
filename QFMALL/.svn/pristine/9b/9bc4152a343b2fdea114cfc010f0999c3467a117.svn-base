@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.funwx.mall.dao.CategoryDao">
+
+    <resultMap id="Base_Result_Map" type="cn.funwx.mall.dto.CategoryDTO">
+        <result column="id" property="id"></result>
+        <result column="category_name" property="categoryName"></result>
+        <result column="parent_id" property="parentId"></result>
+        <result column="has_child" property="hasChild"></result>
+        <result column="tag" property="tag"></result>
+        <result column="level" property="level"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        category_name AS categoryName,
+        parent_id AS parentId,
+        has_child AS hasChild,
+        tag,
+        `level`
+    </sql>
+
+    <select id="findAllCategorys" resultMap="Base_Result_Map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_category
+        WHERE is_del = 0
+    </select>
+
+    <select id="findChildCategorysByParentId" resultMap="Base_Result_Map" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_category
+        WHERE is_del = 0
+        AND parent_id = #{id}
+    </select>
+
+    <select id="getCategoryById" resultMap="Base_Result_Map" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_category
+        WHERE is_del = 0
+        AND id = #{id}
+    </select>
+</mapper>

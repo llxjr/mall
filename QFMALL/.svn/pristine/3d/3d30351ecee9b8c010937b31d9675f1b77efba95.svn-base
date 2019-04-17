@@ -1,0 +1,62 @@
+package cn.funwx.mall.controller.wx;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.funwx.mall.dto.QuestionDTO;
+import cn.funwx.mall.pojo.User;
+import cn.funwx.mall.service.QuestionService;
+import cn.funwx.mall.service.UserLoginService;
+import cn.funwx.mall.utils.Result;
+
+/**
+ * @author chens
+ * @description 微信题目列表返回
+ * @date 2018/9/10 20:04
+ */
+@Controller
+@RequestMapping("/wx/question")
+public class QuestionController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(QuestionController.class);
+
+	@Autowired
+	private UserLoginService userLoginService;
+
+	@Autowired
+	private QuestionService questionService;
+
+	/**
+	 * 获取题目列表
+	 * @param unionId
+	 * @param chapterId
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping("/questionList")
+	@ResponseBody
+	public Result findOrderList(@RequestParam String chapterId,
+			@RequestParam Integer type) {
+		Result res = null;
+		try {
+//			User user = userLoginService.getUserByUnionId(unionId);@RequestParam String unionId, 
+//			if (user == null) {
+//				return Result.err("用户不存在！");
+//			}
+			List<QuestionDTO> questionList = questionService.findQuestionListByTypeChapterId(type,chapterId);
+			res = Result.suc();
+			res.setData(questionList);
+		} catch (Exception e) {
+			LOGGER.error("获取订单列表失败", e);
+			return Result.err("获取订单列表失败！");
+		}
+		return res;
+	}
+}

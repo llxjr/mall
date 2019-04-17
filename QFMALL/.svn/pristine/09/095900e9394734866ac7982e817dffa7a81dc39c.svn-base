@@ -1,0 +1,5 @@
+#master
+jdbc.driver=${maven.jdbc.driver}
+jdbc.url=${maven.jdbc.url}
+jdbc.username=${maven.jdbc.username}
+jdbc.password=${maven.jdbc.password}

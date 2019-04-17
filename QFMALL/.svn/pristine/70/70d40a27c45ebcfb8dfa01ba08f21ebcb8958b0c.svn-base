@@ -1,0 +1,32 @@
+package cn.funwx.mall.service;
+
+import cn.funwx.mall.dto.CategoryDTO;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/9 20:03
+ */
+public interface CategoryService {
+    /**
+     * 获取全部类目
+     * @return
+     */
+    List<CategoryDTO> findAllCategorys();
+
+    /**
+     * 根据父类目id获取所有子类目
+     * @param id
+     * @return
+     */
+    List<CategoryDTO> findChildCategorysByParentId(Integer id);
+
+    /**
+     * 根据id获取类目
+     * @param id
+     * @return
+     */
+    CategoryDTO getCategoryById(Integer id);
+}

@@ -1,0 +1,59 @@
+package cn.funwx.mall.pojo;
+
+import cn.funwx.mall.pojo.base.BaseEntity;
+
+/**
+ * @author chj
+ * @description 用户已购买商品
+ * @date 2018/9/4 14:26
+ */
+public class PurchasedGoods extends BaseEntity {
+    /**
+     * 用户id
+     **/
+    private String userId;
+    /**
+     * 商品id
+     **/
+    private Integer goodId;
+    /**
+     * 订单id
+     */
+    private Integer orderId;
+    /**
+     * 是否是体验版 0否 1是
+     **/
+    private Integer isSup;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Integer getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
+    }
+
+    public Integer getIsSup() {
+        return isSup;
+    }
+
+    public void setIsSup(Integer isSup) {
+        this.isSup = isSup;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+}

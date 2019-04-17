@@ -1,0 +1,47 @@
+package cn.funwx.mall.enums;
+
+/**
+ * @author liu66
+ * @description 账户注册类型
+ * 
+ */
+public enum AccountRegTypeEnum {
+
+    ACCOUNT_MOBILE(0, "手机用户", 0x01),
+    ACCOUNT_OICQ(1, "QQ用户", 0x02),
+    ACCOUNT_WECHAT(2, "微信用户", 0x03);
+
+    private AccountRegTypeEnum(int type, String des, int auth) {
+        this.type = type;
+        this.des = des;
+        this.auth = auth;
+    }
+
+    private int type;
+    private String des;
+    private int auth;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public int getAuth() {
+        return auth;
+    }
+
+    public void setAuth(int auth) {
+        this.auth = auth;
+    }
+}

@@ -1,0 +1,263 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: chj
+  Date: 2018/8/20
+  Time: 21:35
+  To change this template use File | Settings | File Templates.
+--%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="common/head.jsp"%>
+<html>
+<head>
+    <title>青蜂商城</title>
+</head>
+<body>
+<!--Header Begin-->
+<div class="page_header_container">
+    <div class="page_center_wrapper clearfix">
+        <a class="logo_wrapper fl" href="首页.html"><img src="images/page_logo.png"></a>
+        <div class="course_wrapper fl">
+            <h2 class="course_title">选课中心<i class="drop_icon"></i></h2>
+            <div class="course_content">
+                <dl class="course_list">
+                    <dt class="course_list_title">证券/财会/金融</dt>
+                    <dd class="course_list_dd">
+                        <a class="course_list_cell" href="course/课程.html">初级会计职称</a>
+                        <a class="course_list_cell" href="course/课程.html">中级会计职称</a>
+                        <a class="course_list_cell" href="course/课程.html">高级会计职称</a>
+                        <a class="course_list_cell" href="course/课程.html">注册会计师</a>
+                        <a class="course_list_cell" href="course/课程.html">会计从业实训</a>
+                        <a class="course_list_cell" href="course/课程.html">经济师</a>
+                        <a class="course_list_cell" href="course/课程.html">税务师</a>
+                        <a class="course_list_cell" href="course/课程.html">证券分析师</a>
+                        <a class="course_list_cell" href="course/课程.html">证券从业</a>
+                        <a class="course_list_cell" href="course/课程.html">基金从业</a>
+                    </dd>
+                </dl>
+                <dl class="course_list">
+                    <dt class="course_list_title">医学/法学/执业资格/计算机</dt>
+                    <dd class="course_list_dd">
+                        <a class="course_list_cell" href="course/课程.html">执业药师</a>
+                        <a class="course_list_cell" href="course/课程.html">中级会计职称</a>
+                        <a class="course_list_cell" href="course/课程.html">心理咨询师</a>
+                        <a class="course_list_cell" href="course/课程.html">注册会计师</a>
+                        <a class="course_list_cell" href="course/课程.html">导游</a>
+                        <a class="course_list_cell" href="course/课程.html">经济师</a>
+                        <a class="course_list_cell" href="course/课程.html">人力资源</a>
+                        <a class="course_list_cell" href="course/课程.html">证券分析师</a>
+                        <a class="course_list_cell" href="course/课程.html">证券从业</a>
+                        <a class="course_list_cell" href="course/课程.html">基金从业</a>
+                    </dd>
+                </dl>
+                <dl class="course_list">
+                    <dt class="course_list_title">医学/法学/执业资格/计算机</dt>
+                    <dd class="course_list_dd">
+                        <a class="course_list_cell" href="course/课程.html">执业药师</a>
+                        <a class="course_list_cell" href="course/课程.html">中级会计职称</a>
+                        <a class="course_list_cell" href="course/课程.html">心理咨询师</a>
+                        <a class="course_list_cell" href="course/课程.html">注册会计师</a>
+                        <a class="course_list_cell" href="course/课程.html">导游</a>
+                        <a class="course_list_cell" href="course/课程.html">经济师</a>
+                        <a class="course_list_cell" href="course/课程.html">人力资源</a>
+                        <a class="course_list_cell" href="course/课程.html">证券分析师</a>
+                        <a class="course_list_cell" href="course/课程.html">证券从业</a>
+                        <a class="course_list_cell" href="course/课程.html">基金从业</a>
+                    </dd>
+                </dl>
+                <dl class="course_list">
+                    <dt class="course_list_title">医学/法学/执业资格/计算机</dt>
+                    <dd class="course_list_dd">
+                        <a class="course_list_cell" href="course/课程.html">执业药师</a>
+                        <a class="course_list_cell" href="course/课程.html">中级会计职称</a>
+                        <a class="course_list_cell" href="course/课程.html">心理咨询师</a>
+                        <a class="course_list_cell" href="course/课程.html">注册会计师</a>
+                        <a class="course_list_cell" href="course/课程.html">导游</a>
+                        <a class="course_list_cell" href="course/课程.html">经济师</a>
+                        <a class="course_list_cell" href="course/课程.html">人力资源</a>
+                        <a class="course_list_cell" href="course/课程.html">证券分析师</a>
+                        <a class="course_list_cell" href="course/课程.html">证券从业</a>
+                        <a class="course_list_cell" href="course/课程.html">基金从业</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <ul class="nav_wrapper fl">
+            <li class="nav_li"><a class="nav_cell" href="首页.html">首页</a></li>
+            <li class="nav_li"><a class="nav_cell" href="course/课程.html">课程</a></li>
+            <li class="nav_li"><a class="nav_cell" href="course/简答题.html">题库</a></li>
+            <li class="nav_li"><a class="nav_cell" href="course/简答题.html">考试练习</a></li>
+            <li class="nav_li"><a class="nav_cell" href="#">资讯公告</a></li>
+        </ul>
+        <div class="fr">
+            <div class="user_wrapper clearfix">
+                <a class="user_item" href="user/购物车.html">购物车(0)</a>
+                <a class="user_item" href="user/我的订单.html">我的订单</a>
+                <a class="user_item last_user_item" href="user/我的课程.html">我的课程</a>
+                <a class="user_avatar" href="user/我的资料.html"><img src="images/user/avatar.png" alt=""></a>
+                <c:if test="${qfUser == null }">
+                    <a class="login_item" href="login.html">登录</a>
+                    <a class="login_item" href="register.html">注册</a>
+                </c:if>
+                <c:if test="${qfUser != null }">
+                    <span class="login_item">${qfUser.nickName}</span>
+                </c:if>
+            </div>
+            <div class="search_wrapper">
+                <input type="text" placeholder="搜索感兴趣的课程">
+                <div class="search_btn"><i></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Header End-->
+<!--Index Banner-->
+<div class="index_banner_container">
+    <div class="bd">
+        <ul>
+            <li>
+                <a class="banner_img" href="#" style="background-image: url(images/index_banner.jpg);"></a>
+            </li>
+            <li>
+                <a class="banner_img" href="#" style="background-image: url(images/index_banner.jpg);"></a>
+            </li>
+            <li>
+                <a class="banner_img" href="#" style="background-image: url(images/index_banner.jpg);"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="hd">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+<!--Index Banner End-->
+<!--container1 Begin-->
+<div class="index_main_container1">
+    <div class="page_center_wrapper clearfix">
+        <div class="grid_cell">
+            <img src="images/icon_kaodian.png" alt="">
+            <h2>考点覆盖</h2>
+            <p>超大题源量<br>知识点考点全覆盖</p>
+        </div>
+        <div class="grid_cell">
+            <img src="images/icon_ai.png" alt="">
+            <h2>智能练习</h2>
+            <p>利用人工智能算法<br>实现一对一智能出图</p>
+        </div>
+        <div class="grid_cell">
+            <img src="images/icon_pinggu.png" alt="">
+            <h2>智能评估</h2>
+            <p>智能评估成绩<br>精确预测考分</p>
+        </div>
+        <div class="grid_cell">
+            <img src="images/icon_shiping.png" alt="">
+            <h2>视频课程</h2>
+            <p>视频解析声情并茂<br>业内名师讲解</p>
+        </div>
+    </div>
+</div>
+<!--container1 End-->
+<!--container2 Begin-->
+<div class="index_main_container2">
+    <div class="page_center_wrapper">
+        <h2 class="container_title">青蜂题库 九大板块，九九归一</h2>
+        <ul class="grid_wrapper clearfix">
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_01.png" alt="">
+                <h3>金融</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_02.png" alt="">
+                <h3>考研</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_03.png" alt="">
+                <h3>医学</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_04.png" alt="">
+                <h3>会计</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_05.png" alt="">
+                <h3>公考</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_06.png" alt="">
+                <h3>工程</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_07.png" alt="">
+                <h3>资格</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_08.png" alt="">
+                <h3>外语</h3>
+            </li>
+            <li class="grid_cell">
+                <img src="images/index_menu_icon_09.png" alt="">
+                <h3>职场</h3>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--container2 End-->
+<!--Footer Begin-->
+<div class="page_footer_container">
+    <div class="page_center_wrapper">
+        <div class="clearfix">
+            <div class="webmap_wrapper fl">
+                <dl class="webmap_col">
+                    <dd class="webmap_dd"><a href="首页.html">网站首页</a></dd>
+                    <dd class="webmap_dd"><a href="#">关于我们</a></dd>
+                    <dd class="webmap_dd"><a href="#">联系我们</a></dd>
+                    <dd class="webmap_dd"><a href="#">加入我们</a></dd>
+                </dl>
+                <dl class="webmap_col">
+                    <dd class="webmap_dd"><a href="course/课程.html">选课购课</a></dd>
+                    <dd class="webmap_dd"><a href="course/课程.html">课程学习</a></dd>
+                    <dd class="webmap_dd"><a href="#">成绩证书</a></dd>
+                </dl>
+                <dl class="webmap_col">
+                    <dd class="webmap_dd"><a href="#">网站条款</a></dd>
+                    <dd class="webmap_dd"><a href="#">常见问题</a></dd>
+                    <dd class="webmap_dd"><a href="#">意见反馈</a></dd>
+                    <dd class="webmap_dd"><a href="#">青蜂网校</a></dd>
+                </dl>
+            </div>
+            <div class="qrcode_wrapper fl">
+                <img src="images/qrcode.png" alt="">
+                <p><i class="wechat_icon"></i>微信扫一扫，使用小程序</p>
+            </div>
+            <div class="contact_wrapper fr">
+                <p class="contact_tel">400-8888-8888</p>
+                <p class="contact_work">周一至周日：8：00-20：00</p>
+                <div class="contact_list">
+                    <a class="contact_list_cell" href="#"><img src="images/icon_wechat.png" alt=""></a>
+                    <a class="contact_list_cell" href="#"><img src="images/icon_sina.png" alt=""></a>
+                    <a class="contact_list_cell" href="#"><img src="images/icon_qq.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright_bar">Copyright@2013-2017 www.baidu.com All right res</p>
+    </div>
+</div>
+<!--Footer End-->
+<script src="vendors/jquery/1.42/jquery1.42.min.js"></script>
+<script src="vendors/SuperSlide/2.1.2/jquery.SuperSlide.2.1.2.js"></script>
+<script>
+    // 首页轮播 需要引用SuperSlide
+    $(".index_banner_container").slide({
+        titleCell:".hd ul",
+        mainCell: ".bd ul",
+        vis: "atuo",
+        autoPlay:true
+    })
+</script>
+</body>
+</html>

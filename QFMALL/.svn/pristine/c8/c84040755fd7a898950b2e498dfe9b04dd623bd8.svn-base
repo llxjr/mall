@@ -1,0 +1,50 @@
+package cn.funwx.mall.controller.wx;
+
+import cn.funwx.mall.dto.ChapterDTO;
+import cn.funwx.mall.service.ChapterService;
+import cn.funwx.mall.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 微信章节接口
+ * @date 2018/9/9 22:24
+ */
+@RestController
+@RequestMapping("/wx/chapter")
+public class ChapterController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ChapterController.class);
+
+    @Autowired
+    private ChapterService chapterService;
+
+    @RequestMapping("/list/{courseId}")
+    public Result findAllChaptersByCourseId(@PathVariable Integer courseId) {
+        try {
+            List<ChapterDTO> dtoList = chapterService.findChaptersByCourseId(courseId);
+            return Result.sucT(dtoList);
+        } catch (Exception e) {
+            LOG.error("获取章节失败", e);
+            return Result.err("获取章节失败！");
+        }
+    }
+
+    @RequestMapping("/{id}")
+    public Result getChapterById(@PathVariable Integer id){
+        try {
+            ChapterDTO dto = chapterService.getChapterById(id);
+            return Result.sucT(dto);
+        }catch (Exception e) {
+            LOG.error("获取章节失败", e);
+            return Result.err("获取章节失败！");
+        }
+    }
+}

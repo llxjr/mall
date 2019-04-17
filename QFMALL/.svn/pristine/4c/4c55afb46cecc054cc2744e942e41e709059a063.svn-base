@@ -1,0 +1,30 @@
+package cn.funwx.mall.dao;
+
+import cn.funwx.mall.pojo.Goods;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 商品
+ * @date 2018/9/4 20:22
+ */
+@Repository
+public interface GoodsDao {
+
+    /**
+     * 根据 userId 获取商品列表
+     *
+     * @return
+     */
+    List<Goods> findAllGoods();
+
+    /**
+     * 根据id获取单个商品
+     *
+     * @param id
+     * @return
+     */
+    Goods getGoodById(Integer id);
+}

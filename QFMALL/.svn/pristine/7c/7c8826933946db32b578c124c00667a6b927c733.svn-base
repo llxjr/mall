@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.funwx.mall.dao.PurchaseGoodsDao">
+
+    <sql id="Base_Column_List">
+        `id`,
+        `user_id` as userId,
+        `good_id` as goodId,
+        `order_id` as orderId,
+        `is_sub` as isSub,
+        `create_date` as createTime,
+        `create_by` as createBy,
+        `update_date` as updateTime,
+        `update_by` as updateBy
+    </sql>
+
+    <select id="findOrderManageByUserId" parameterType="java.lang.String" resultType="cn.funwx.mall.pojo.PurchasedGoods">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_mall_purchase_good
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="insert" parameterType="cn.funwx.mall.pojo.PurchasedGoods">
+        INSERT INTO t_mall_purchase_good(
+          user_id,
+          good_id,
+          order_id,
+          is_sub,
+          create_date,
+          create_by
+        ) VALUES (
+          #{userId},
+          #{goodId},
+          #{orderId},
+          #{is_sub},
+          #{createTime},
+          #{createBy}
+        )
+    </insert>
+</mapper>

@@ -1,0 +1,29 @@
+package cn.funwx.mall.service;
+
+import cn.funwx.mall.pojo.PurchasedGoods;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/4 17:16
+ */
+public interface PurchaseGoodService {
+
+    /**
+     * 根据用户uuid获取已购买商品集合
+     *
+     * @param userId
+     * @return
+     */
+    List<PurchasedGoods> findPurchaseGoodsByUserId(String userId);
+
+    /**
+     * 新增
+     *
+     * @param purchasedGoods
+     * @return
+     */
+    int insert(PurchasedGoods purchasedGoods);
+}

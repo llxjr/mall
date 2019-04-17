@@ -1,0 +1,51 @@
+package cn.funwx.mall.service.impl;
+
+import cn.funwx.mall.dao.CategoryDao;
+import cn.funwx.mall.dto.CategoryDTO;
+import cn.funwx.mall.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/9 20:07
+ */
+@Service
+public class CategoryServiceImpl implements CategoryService {
+
+    @Autowired
+    private CategoryDao categoryDao;
+
+    public List<CategoryDTO> findAllCategorys() {
+        return bulidCategoryList(new ArrayList<CategoryDTO>());
+    }
+
+    public List<CategoryDTO> findChildCategorysByParentId(Integer id) {
+        return categoryDao.findChildCategorysByParentId(id);
+    }
+
+    public CategoryDTO getCategoryById(Integer id) {
+        return categoryDao.getCategoryById(id);
+    }
+
+    public List<CategoryDTO> bulidCategoryList(List<CategoryDTO> dtoList){
+        if (CollectionUtils.isEmpty(dtoList)) {
+            dtoList = categoryDao.findAllCategorys();
+        }
+        for (CategoryDTO dto: dtoList) {
+            if (dto.getHasChild() == 1 && dto.getLevel() < 3) {
+                List<CategoryDTO> childList = categoryDao.findChildCategorysByParentId(dto.getId());
+                if (!CollectionUtils.isEmpty(childList)) {
+                    dto.setChildDto(childList);
+                    bulidCategoryList(childList);
+                }
+            }
+        }
+        return dtoList;
+    }
+}

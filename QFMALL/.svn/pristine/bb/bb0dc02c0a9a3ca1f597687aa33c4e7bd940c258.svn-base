@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.funwx.mall.dao.QuestionDao">
+
+	<sql id="WXview_Column_List">
+		qf_question.id AS id, 
+		qf_question.bank_type AS type, 
+		qf_question.chapter_id AS chapterId, 
+		qf_question_type.type_name AS questionTypeName,
+		
+		qf_question.stem,
+		qf_question_analysis.analysis,
+		
+		qf_question.value,
+		qf_question.correct,
+		
+		qf_question.answer_num AS answerNum,
+		qf_question.correct_num AS correctNum,
+		case qf_question.answer_num
+			when '0' then '0%'
+			else concat(Round(qf_question.correct_num*100/qf_question.answer_num,2),'%') end as correctRate
+	</sql>
+	
+	<select id="findQuestionListByTypeChapterId" resultType="cn.funwx.mall.dto.QuestionDTO">
+		SELECT 
+		<include refid="WXview_Column_List" />
+		FROM qf_question
+		LEFT JOIN qf_question_type ON qf_question.question_type = qf_question_type.id
+		LEFT JOIN qf_question_analysis ON qf_question_analysis.question_id = qf_question.id
+		WHERE qf_question.bank_type = #{type}
+			AND qf_question.chapter_id = #{chapterId}
+			AND qf_question.parent_id = #{parentId}
+		ORDER BY qf_question.create_time
+	</select>
+	
+</mapper>

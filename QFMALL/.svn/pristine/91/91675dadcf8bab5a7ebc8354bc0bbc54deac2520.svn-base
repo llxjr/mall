@@ -1,0 +1,26 @@
+package cn.funwx.mall.service;
+
+import cn.funwx.mall.dto.CourseDTO;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/9 20:03
+ */
+public interface CourseService {
+    /**
+     * 根据类目id获取所有课程
+     * @param categoryId
+     * @return
+     */
+    List<CourseDTO> findCoursesByCategoryId(Integer categoryId);
+
+    /**
+     * 根据主键id获取课程
+     * @param id
+     * @return
+     */
+    CourseDTO getCourseById(Integer id);
+}

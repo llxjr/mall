@@ -1,0 +1,104 @@
+package cn.funwx.mall.pojo;
+
+import cn.funwx.mall.pojo.base.BaseEntity;
+
+/**
+ * @description 章节管理
+ * @author chj
+ * @date 创建时间：2018-7-3 上午9:33:04
+ * @version 1.0
+ * @since
+ */
+public class Chapter extends BaseEntity {
+	/** 类目ID */
+	private Integer categoryId;
+	/** 课程ID */
+	private Integer courseId;
+	/** 章节编号 */
+	private String chapterId;
+	/** 章节名称 */
+	private String chapterName;
+	/** 是否有视频 0无 1有 */
+	private Integer hasVideo;
+	/** 是否免费 0不是 1是 */
+	private Integer isFree;
+	/** 是否是一级章节 0是 1不是 */
+	private Integer hasChild;
+	/** 父章节ID */
+	private Integer parentId;
+	/** 排序 */
+	private Integer tOrder;
+	
+	public Integer gettOrder() {
+		return tOrder;
+	}
+
+	public void settOrder(Integer tOrder) {
+		this.tOrder = tOrder;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Integer getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+
+	public String getChapterId() {
+		return chapterId;
+	}
+
+	public void setChapterId(String chapterId) {
+		this.chapterId = chapterId;
+	}
+
+	public String getChapterName() {
+		return chapterName;
+	}
+
+	public void setChapterName(String chapterName) {
+		this.chapterName = chapterName;
+	}
+
+	public Integer getHasVideo() {
+		return hasVideo;
+	}
+
+	public void setHasVideo(Integer hasVideo) {
+		this.hasVideo = hasVideo;
+	}
+
+	public Integer getIsFree() {
+		return isFree;
+	}
+
+	public void setIsFree(Integer isFree) {
+		this.isFree = isFree;
+	}
+
+	public Integer getHasChild() {
+		return hasChild;
+	}
+
+	public void setHasChild(Integer hasChild) {
+		this.hasChild = hasChild;
+	}
+
+}

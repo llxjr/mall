@@ -1,0 +1,63 @@
+package cn.funwx.mall.common;
+
+import cn.funwx.mall.utils.IpUtils;
+import cn.funwx.mall.utils.UUIDUtil;
+import cn.funwx.mall.utils.WxPayUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author chj
+ * @description 构造支付业务请求参数
+ * @date 2018/9/5 14:30
+ */
+public class PaymentParamsBuilder {
+
+    public static Map<String, String> bulidWxRequestParams(HttpServletRequest request, String openId,
+                                                           Float totalFee, String orderNo, String payBody) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("openid", openId);
+        params.put("appid", WxConfig.WX_APP_ID);
+        params.put("mch_id", WxConfig.WX_MCH_ID);
+        params.put("body", payBody);
+        //32位以内随机字符串
+        params.put("nonce_str", UUIDUtil.getUUID());
+        //订单号
+        params.put("out_trade_no", orderNo);
+        //支付金额 字符串
+        params.put("total_fee", totalFee.toString());
+        //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP
+        params.put("spbill_create_ip", IpUtils.getClientIp(request));
+        //回调接口
+        params.put("notify_url", WxConfig.WX_NOTIFY_URL);
+        //支付方式
+        params.put("trade_type", WxConfig.WX_TRADE_TYPE_JSAPI);
+        return params;
+    }
+
+    public static String bulidWxRequestXMLStr(Map<String, String> map) {
+        //生成签名
+        String sign = WxPayUtils.sign(WxPayUtils.createLinkString(map), WxConfig.WX_APP_SECRET,
+                "utf-8").toUpperCase();
+        StringBuilder xmlBuilder = new StringBuilder();
+        if (StringUtils.isNotBlank(sign)) {
+            xmlBuilder.append("<xml>");
+            xmlBuilder.append("<appid>" + map.get("appid") + "</appid>");
+            xmlBuilder.append("<body><![CDATA[" +  map.get("body") + "]]></body>");
+            xmlBuilder.append("<mch_id>" +  map.get("mch_id") + "</mch_id>");
+            xmlBuilder.append("<nonce_str>" +  map.get("nonce_str") + "</nonce_str>");
+            xmlBuilder.append("<notify_url>" +  map.get("notify_url") + "</notify_url>");
+            xmlBuilder.append("<openid>" +  map.get("openid") + "</openid>");
+            xmlBuilder.append("<out_trade_no>" +  map.get("out_trade_no") + "</out_trade_no>");
+            xmlBuilder.append("<spbill_create_ip>" +  map.get("spbill_create_ip") + "</spbill_create_ip>");
+            xmlBuilder.append("<total_fee>" +  map.get("total_fee") + "</total_fee>");
+            xmlBuilder.append("<trade_type>" +  map.get("trade_type") + "</trade_type>");
+            xmlBuilder.append("<sign>" + sign + "</sign>");
+            xmlBuilder.append("</xml>");
+        }
+        return xmlBuilder.toString();
+    }
+}

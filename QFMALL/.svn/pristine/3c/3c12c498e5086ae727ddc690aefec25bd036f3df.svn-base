@@ -1,0 +1,74 @@
+package cn.funwx.mall.service.impl;
+
+import cn.funwx.mall.dao.OrderManageDao;
+import cn.funwx.mall.dao.PurchaseGoodsDao;
+import cn.funwx.mall.enums.OrderCreateTypeEnum;
+import cn.funwx.mall.enums.OrderManageEnum;
+import cn.funwx.mall.pojo.Goods;
+import cn.funwx.mall.pojo.OrderManage;
+import cn.funwx.mall.pojo.PurchasedGoods;
+import cn.funwx.mall.pojo.User;
+import cn.funwx.mall.service.OrderManageService;
+import cn.funwx.mall.utils.BussinessNoUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/4 17:19
+ */
+@Service
+public class OrderManageServiceImpl implements OrderManageService {
+
+    @Autowired
+    private OrderManageDao orderManageDao;
+
+    @Autowired
+    private PurchaseGoodsDao purchaseGoodsDao;
+
+    public List<OrderManage> findOrderManageByUserId(String userId) {
+        return orderManageDao.findOrderManageByUserId(userId);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public int insert(User user, Goods goods) {
+        //订单编号
+        String orderNo = BussinessNoUtils.nextOrderNo(user.getAuthorityCode());
+        OrderManage orderManage = new OrderManage();
+        orderManage.setOrderNo(orderNo);
+        orderManage.setGoodNo(goods.getGoodsNo());
+        orderManage.setGoodId(goods.getId());
+        orderManage.setOrderCreaterUUID(user.getUuid());
+        orderManage.setOrderCreaterId(user.getId());
+        orderManage.setGoodPrice(goods.getGoodsPrice());
+        //小程序默认为已支付
+        orderManage.setOrderStatus(OrderManageEnum.PAID.getCode());
+        //线上支付
+        orderManage.setOrderCreateStatus(OrderCreateTypeEnum.ONLINE_PAID.getCode());
+        //虚拟商品默认为一件
+        orderManage.setGoodNum(1);
+        //设置未删除
+        orderManage.setIdDel(0);
+        orderManage.setCreateTime(new Date());
+        orderManage.setCreateBy(user.getNickName());
+        int isrNum = orderManageDao.insert(orderManage);
+        if (isrNum != 1) {
+            throw new RuntimeException("订单创建失败");
+        }
+        //直接成功绑定用户和商品之间的关系
+        PurchasedGoods purchasedGoods = new PurchasedGoods();
+        //默认均为付费
+        purchasedGoods.setIsSup(0);
+        purchasedGoods.setUserId(user.getUuid());
+        purchasedGoods.setGoodId(goods.getId());
+        purchasedGoods.setOrderId(orderManage.getId());
+        purchasedGoods.setCreateTime(new Date());
+        purchasedGoods.setCreateBy(user.getNickName());
+        return purchaseGoodsDao.insert(purchasedGoods);
+    }
+}

@@ -1,0 +1,43 @@
+package cn.funwx.mall.service.impl;
+
+import cn.funwx.mall.dao.ChapterDao;
+import cn.funwx.mall.dto.ChapterDTO;
+import cn.funwx.mall.service.ChapterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/9 20:10
+ */
+@Service
+public class ChapterServiceImpl implements ChapterService {
+
+    @Autowired
+    private ChapterDao chapterDao;
+
+    public List<ChapterDTO> findChaptersByCourseId(Integer courseId) {
+        List<ChapterDTO> dtos = chapterDao.findChaptersByCourseId(courseId);
+        if (!CollectionUtils.isEmpty(dtos)) {
+            for (ChapterDTO dto : dtos) {
+                if (dto.getHasChild() == 1) {
+                    List<ChapterDTO> childs = chapterDao.findChildChaptersByParentId(dto.getId());
+                    dto.setChilds(childs);
+                }
+            }
+        }
+        return dtos;
+    }
+
+    public List<ChapterDTO> findChildChaptersByParentId(Integer parentId) {
+        return chapterDao.findChildChaptersByParentId(parentId);
+    }
+
+    public ChapterDTO getChapterById(Integer id) {
+        return null;
+    }
+}

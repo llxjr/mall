@@ -1,0 +1,60 @@
+package cn.funwx.mall.controller.wx;
+
+import cn.funwx.mall.pojo.PurchasedGoods;
+import cn.funwx.mall.pojo.User;
+import cn.funwx.mall.service.PurchaseGoodService;
+import cn.funwx.mall.service.UserLoginService;
+import cn.funwx.mall.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 微信用户已购商品
+ * @date 2018/9/4 20:06
+ */
+@Controller
+@RequestMapping("/wx/purchaseGood")
+public class PurchaseGoodController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PurchaseGoodController.class);
+
+    @Autowired
+    private UserLoginService userLoginService;
+
+    @Autowired
+    private PurchaseGoodService purchaseGoodService;
+
+    /**
+     * 获取用户购买商品列表
+     *
+     * @param unionId
+     * @return
+     */
+    @RequestMapping("/list/{unionId}")
+    @ResponseBody
+    public Result findPurchaseGoodList(@PathVariable String unionId) {
+        Result res = null;
+        try {
+            User user = userLoginService.getUserByUnionId(unionId);
+            if (user == null) {
+                return Result.err("用户不存在！");
+            }
+            List<PurchasedGoods> goodList = purchaseGoodService.findPurchaseGoodsByUserId(user.getUuid());
+            res = Result.suc();
+            res.setData(goodList);
+        } catch (Exception e) {
+            LOGGER.error("获取用户已购买商品失败", e);
+            return Result.err("获取用户已购买商品失败");
+        }
+        return res;
+    }
+
+}

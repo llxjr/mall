@@ -1,0 +1,85 @@
+package cn.funwx.mall.pojo;
+
+
+import cn.funwx.mall.pojo.base.BaseEntity;
+
+/**
+ * @description 类目管理
+ * @author chj
+ * @date 创建时间：2018-6-26 上午9:47:13
+ * @version 1.0
+ * @since
+ */
+public class Category extends BaseEntity {
+	/** 类型名称 */
+	private String categoryName;
+	/** 类型描述 */
+	private String description;
+	/** 父ID 没有默认为0 */
+	private Integer parentId;
+	/** 是否有子类 有为1没有为0 */
+	private Integer hasChild;
+	/** 唯一区别标识 */
+	private String tag;
+	/** 类目级别 最多3级 根为1*/
+	private Integer level;
+	/** 是否删除 0无 1删 */
+	private Integer isDel;
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public Integer getHasChild() {
+		return hasChild;
+	}
+
+	public void setHasChild(Integer hasChild) {
+		this.hasChild = hasChild;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	public Integer getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+	
+}

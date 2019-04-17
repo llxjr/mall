@@ -1,0 +1,25 @@
+package cn.funwx.mall.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import cn.funwx.mall.dto.QuestionAnswerDTO;
+
+/**
+ * @author chens
+ * @description 题目答案
+ * @date 2018/9/10 20:04
+ */
+@Repository
+public interface QuestionAnswerDao {
+
+	/**
+	 * 题目列表
+	 * @param chapterId
+	 * @param type
+	 * @return
+	 */
+	List<QuestionAnswerDTO> findQuestionAnswerListByQuestionId(Integer questionId);
+	
+}

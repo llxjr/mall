@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.funwx.mall.dao.UserLoginDao">
+
+    <sql id="Base_Column_List">
+		id,
+		uuid,
+		gender,
+		major,
+		province,
+		city,
+		district,
+		graduate_college AS graduateCollegedd,
+		union_id AS unionId,
+		open_id AS open_id,
+		login_name AS loginName,
+		password AS password,
+		avatar_url AS avatarUrl,
+		nick_name AS nickName,
+		real_name AS realName,
+		phone_num AS phoneNum,
+		email_address AS emailAddress,
+		role_name AS roleName,
+		last_login_ip_addr AS lastLoginIpAddr,
+		create_time AS createTime,
+		operate_time AS operateTime,
+		account_status AS accountStatus,
+		authority_code AS authorityCode,
+		account_reg_type AS accountRegType
+	</sql>
+
+    <select id="getUserByPhoneNum" parameterType="java.lang.String" resultType="cn.funwx.mall.pojo.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_mall_user tmu
+        WHERE login_name = #{loginName}
+        AND account_status = 0
+    </select>
+
+	<select id="getUserByUnionId" parameterType="java.lang.String" resultType="cn.funwx.mall.pojo.User">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM t_mall_user tmu
+		WHERE union_id = #{uniondId}
+		AND account_status = 0
+	</select>
+	
+	<select id="getUserByUuId" parameterType="java.lang.String" resultType="cn.funwx.mall.pojo.User">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM t_mall_user tmu
+		WHERE uuid = #{uuid}
+		AND account_status = 0
+	</select>
+
+    <insert id="insertMobileUser" parameterType="cn.funwx.mall.pojo.User">
+		INSERT INTO t_mall_user(
+			uuid,
+			login_name,
+			password,
+			nick_name,
+			phone_num,
+			gender,
+			role_name,
+			last_login_ip_addr,
+			create_time,
+			account_status,
+			authority_code,
+			account_reg_type
+		) VALUES (
+			#{uuid},
+			#{loginName},
+			#{password},
+			#{nickName},
+			#{phoneNum},
+			#{gender},
+			#{roleName},
+			#{lastLoginIpAddr},
+			#{createTime},
+			#{accountStatus},
+			#{authorityCode},
+			#{accountRegType}
+		)
+	</insert>
+
+	<insert id="insertWxUser" parameterType="cn.funwx.mall.pojo.User">
+		INSERT INTO t_mall_user(
+			uuid,
+			union_id,
+			open_id,
+			password,
+			nick_name,
+			gender,
+			role_name,
+			last_login_ip_addr,
+			create_time,
+			account_status,
+			authority_code,
+			account_reg_type,
+			pronvice,
+			city,
+			avatar_url
+		) VALUES (
+			#{uuid},
+			#{unionId},
+			#{openId},
+			#{password},
+			#{nickName},
+			#{gender},
+			#{roleName},
+			#{lastLoginIpAddr},
+			#{createTime},
+			#{accountStatus},
+			#{authorityCode},
+			#{accountRegType},
+			#{pronvice},
+			#{city},
+			#{avatarUrl}
+		)
+	</insert>
+
+	<update id="updateUser" parameterType="cn.funwx.mall.pojo.User">
+		UPDATE t_mall_user 
+		<set>
+		<if test="password != null and password != ''">
+			password = #{password},
+		</if>
+		<if test="nickName != null and nickName != ''">
+			nick_name = #{nickName},
+		</if>
+		<if test="avatarUrl != null and avatarUrl != ''">
+			avatar_url = #{avatarUrl},
+		</if>
+		<if test="realName != null and realName !=''">
+			real_name = #{realName},
+		</if>
+		<if test="phoneNum != null and phoneNum !=''">
+			phone_num = #{phoneNum},
+		</if>
+		<if test="operateTime != null and operateTime != ''">
+			operate_time = #{operateTime},
+		</if>
+		<if test="lastLoginIpAddr != null and lastLoginIpAddr != ''">
+			last_login_ip_addr = #{lastLoginIpAddr},
+		</if>
+		<if test="emailAddress != null and emailAddress != ''">
+			email_address = #{emailAddress},
+		</if>
+		<if test="province != null and province != ''">
+			province = #{province},
+		</if>
+		<if test="city != null and city != ''">
+			city = #{city},
+		</if>
+		<if test="district != null and district != ''">
+			district = #{district},
+		</if>
+		<if test="graduateCollegedd != null and graduateCollegedd != ''">
+			graduate_college = #{graduateCollegedd},
+		</if>
+		<if test="major != null and major != ''">
+			major = #{major},
+		</if>
+		<if test="gender != null">
+			gender = #{gender}
+		</if>
+		</set>
+		WHERE uuid = #{uuid}
+	</update>
+</mapper>

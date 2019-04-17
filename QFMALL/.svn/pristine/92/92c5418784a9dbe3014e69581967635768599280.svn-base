@@ -1,0 +1,29 @@
+package cn.funwx.mall.service.impl;
+
+import cn.funwx.mall.dao.CourseDao;
+import cn.funwx.mall.dto.CourseDTO;
+import cn.funwx.mall.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/9 20:08
+ */
+@Service
+public class CourseServiceImpl implements CourseService {
+
+    @Autowired
+    private CourseDao courseDao;
+
+    public List<CourseDTO> findCoursesByCategoryId(Integer categoryId) {
+        return courseDao.findCoursesByCategoryId(categoryId);
+    }
+
+    public CourseDTO getCourseById(Integer id) {
+        return courseDao.getCourseById(id);
+    }
+}

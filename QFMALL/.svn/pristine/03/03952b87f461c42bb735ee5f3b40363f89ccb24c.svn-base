@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.funwx.mall.dao.GoodsDao">
+
+	<sql id="Base_Column_List">
+		qf_goods.id AS id, 
+		qf_goods.category_id AS categoryId, 
+		qf_goods.course_id AS courseId, 
+		qf_goods.goods_name AS goodsName,
+		qf_goods.describe,
+		qf_goods.goods_img AS goodsImg,
+		qf_goods.goods_no AS goodsNo,
+		qf_goods.goods_price AS goodsPrice,
+		qf_goods.goods_valid_duration AS goodsValidDuration,
+		qf_goods.is_not_entity AS isNotEntity,
+		qf_goods.is_blank AS isBlank,
+		qf_goods.is_del AS isDel,
+		qf_goods.create_time AS createTime,
+		qf_goods.create_by AS createBy,
+		qf_goods.update_time AS updateTime,
+		qf_goods.update_by AS updateBy
+	</sql>
+	
+	<select id="findAllGoods" resultType="cn.funwx.mall.pojo.Goods">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM qf_goods
+	</select>
+
+	<select id="getGoodById" parameterType="java.lang.Integer" resultType="cn.funwx.mall.pojo.Goods">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM qf_goods
+		WHERE id = #{id}
+	</select>
+</mapper>

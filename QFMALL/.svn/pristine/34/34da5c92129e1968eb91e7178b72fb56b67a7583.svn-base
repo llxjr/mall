@@ -1,0 +1,113 @@
+package cn.funwx.mall.pojo;
+
+import cn.funwx.mall.pojo.base.BaseEntity;
+
+import java.math.BigDecimal;
+
+/**
+ * 商品表
+ * @author chens
+ * @date 创建时间：2018-8-19
+ * @version 1.0 
+ * @since 
+ */
+public class Goods extends BaseEntity {
+
+	/** 类目ID */
+	private Integer categoryId;
+	/** 课程ID */
+	private Integer courseId;
+	/** 商品名称 */
+	private String goodsName;
+	/** 商品描述 */
+	private String describe;
+	/** 商品图片 */
+	private String goodsImg;
+	/** 商品编号 */
+	private String goodsNo;
+	/** 商品价值 0为免费 */
+	private BigDecimal goodsPrice;
+	/** 有效时长 0为永久 */
+	private long goodsValidDuration;
+	/** 是否不含有实体  0不含有 1含有*/
+	private int isNotEntity;
+	/** 是否不显示 0显示 1不显示 */
+	private int isBlank;
+	/** 是否删除 */
+	private int isDel;
+	/** 明细集合 例如1,3,5*/
+	private String detail;
+	
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	public String getDescribe() {
+		return describe;
+	}
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+	public String getGoodsImg() {
+		return goodsImg;
+	}
+	public void setGoodsImg(String goodsImg) {
+		this.goodsImg = goodsImg;
+	}
+	public int getIsNotEntity() {
+		return isNotEntity;
+	}
+	public void setIsNotEntity(int isNotEntity) {
+		this.isNotEntity = isNotEntity;
+	}
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+	public Integer getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	public String getGoodsNo() {
+		return goodsNo;
+	}
+	public void setGoodsNo(String goodsNo) {
+		this.goodsNo = goodsNo;
+	}
+	public BigDecimal getGoodsPrice() {
+		return goodsPrice;
+	}
+	public void setGoodsPrice(BigDecimal goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	public long getGoodsValidDuration() {
+		return goodsValidDuration;
+	}
+	public void setGoodsValidDuration(long goodsValidDuration) {
+		this.goodsValidDuration = goodsValidDuration;
+	}
+	public int getIsBlank() {
+		return isBlank;
+	}
+	public void setIsBlank(int isBlank) {
+		this.isBlank = isBlank;
+	}
+	public int getIsDel() {
+		return isDel;
+	}
+	public void setIsDel(int isDel) {
+		this.isDel = isDel;
+	}
+}

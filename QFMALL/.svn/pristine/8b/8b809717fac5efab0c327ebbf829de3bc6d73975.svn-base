@@ -1,0 +1,95 @@
+package cn.funwx.mall.controller.wx;
+
+import cn.funwx.mall.pojo.Goods;
+import cn.funwx.mall.pojo.OrderManage;
+import cn.funwx.mall.pojo.User;
+import cn.funwx.mall.service.GoodsService;
+import cn.funwx.mall.service.OrderManageService;
+import cn.funwx.mall.service.UserLoginService;
+import cn.funwx.mall.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 微信订单管理
+ * @date 2018/9/4 20:04
+ */
+@Controller
+@RequestMapping("/wx/order")
+public class OrderManageController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderManageController.class);
+
+    @Autowired
+    private UserLoginService userLoginService;
+
+    @Autowired
+    private OrderManageService orderManageService;
+
+    @Autowired
+    private GoodsService goodsService;
+
+    /**
+     * 获取订单列表
+     *
+     * @param unionId
+     * @return
+     */
+    @RequestMapping("/orderList/{unionId}")
+    @ResponseBody
+    public Result findOrderList(@PathVariable String unionId) {
+        Result res = null;
+        try {
+            User user = userLoginService.getUserByUnionId(unionId);
+            if (user == null) {
+                return Result.err("用户不存在！");
+            }
+            List<OrderManage> orderList = orderManageService.findOrderManageByUserId(user.getUuid());
+            res = Result.suc();
+            res.setData(orderList);
+        } catch (Exception e) {
+            LOGGER.error("获取订单列表失败", e);
+            return Result.err("获取订单列表失败！");
+        }
+        return res;
+    }
+
+    /**
+     * 创建订单
+     *
+     * @param unionId
+     * @param goodId
+     * @return
+     */
+    @RequestMapping("/create")
+    @ResponseBody
+    public Result createOrder(@RequestParam String unionId, @RequestParam Integer goodId) {
+        try {
+            User user = userLoginService.getUserByUnionId(unionId);
+            if (user == null) {
+                return Result.err("用户不存在");
+            }
+            Goods goods = goodsService.getGoodById(goodId);
+            if (goods == null) {
+                return Result.err("创建订单失败，商品不存在");
+            }
+            int result = orderManageService.insert(user, goods);
+            if (result == 1) {
+                return Result.suc();
+            }
+        } catch (Exception e) {
+            LOGGER.error("创建订单失败", e);
+            return Result.err("创建订单失败");
+        }
+        return Result.err("创建订单失败");
+    }
+}

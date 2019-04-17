@@ -1,0 +1,63 @@
+package cn.funwx.mall.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.funwx.mall.dao.QuestionAnswerDao;
+import cn.funwx.mall.dao.QuestionDao;
+import cn.funwx.mall.dto.QuestionAnswerDTO;
+import cn.funwx.mall.dto.QuestionDTO;
+import cn.funwx.mall.service.QuestionService;
+
+/**
+ * @author chens
+ * @description
+ * @date 2018/9/10 20:04
+ */
+@Service
+public class QuestionServiceImpl implements QuestionService{
+
+	@Autowired
+	private QuestionDao questionDao;
+	@Autowired
+	private QuestionAnswerDao questionAnswerDao;
+
+	public List<QuestionDTO> findQuestionListByTypeChapterId(Integer type, String chapterId) {
+		List<QuestionDTO> dtoList = findQuestionListByTypeChapterId(type, chapterId, 0);
+		return dtoList;
+	}
+	
+	private List<QuestionDTO> findQuestionListByTypeChapterId(Integer type, String chapterId, Integer parentId){
+		List<QuestionDTO> dtoList = new ArrayList<QuestionDTO>();
+		dtoList = questionDao.findQuestionListByTypeChapterId(type, chapterId, parentId);
+		for (QuestionDTO dto : dtoList){
+			if (!dto.getQuestionTypeName().isEmpty()){
+				if (dto.getQuestionTypeName().equals("共题干题")
+						|| dto.getQuestionTypeName().equals("阅读理解")
+						|| dto.getQuestionTypeName().equals("完形填空")){
+					dto.setQuestionList(findQuestionListByTypeChapterId(type, chapterId, dto.getId()));
+				}else{
+					List<QuestionAnswerDTO> answerList = questionAnswerDao.findQuestionAnswerListByQuestionId(dto.getId());
+					dto.setAnswerList(answerList);
+					if (dto.getQuestionTypeName().equals("选择题")){
+						//判断是多选还是单选
+						int num = 0;
+						for (QuestionAnswerDTO answer : answerList){
+							if (answer.isCorrect())
+								num++;
+						}
+						if (num == 1){
+							dto.setQuestionTypeName("单选题");
+						}else{
+							dto.setQuestionTypeName("多选题");
+						}
+					}
+				}
+			}
+		}
+		return dtoList;
+	}
+}

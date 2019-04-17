@@ -1,0 +1,83 @@
+package cn.funwx.mall.service;
+
+import cn.funwx.mall.enums.AccountRegTypeEnum;
+import cn.funwx.mall.enums.AccountStatusEnum;
+import cn.funwx.mall.pojo.User;
+import cn.funwx.mall.utils.Result;
+import cn.funwx.mall.utils.UUIDUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Date;
+
+/**
+ * @author chj
+ * @description 注册服务
+ * @date 2018/8/24 16:19
+ */
+public abstract class UserRegisterService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserRegisterService.class);
+
+    protected abstract Result beforeReg(User user, String vCode);
+
+    protected abstract Result doReg(User user);
+
+    /**
+     * hook method
+     */
+    protected void afterReg() {
+    }
+
+    /**
+     * 执行注册
+     *
+     * @param user  用户信息
+     * @param vCode 验证码
+     * @return
+     */
+    final public Result execute(User user, String vCode) {
+        Result res = beforeReg(user, vCode);
+        boolean flag = true;
+        if (res != null && res.isSuc()) {
+            final int regType = user.getAccountRegType();
+            switch (regType) {
+                case 0:
+                    LOGGER.info("正在注册用户手机号为:" + user.getLoginName());
+                    user.setAuthorityCode(AccountRegTypeEnum.ACCOUNT_MOBILE.getAuth());
+                    user.setRoleName(AccountRegTypeEnum.ACCOUNT_MOBILE.getDes());
+                    break;
+                case 1:
+                    LOGGER.info("正在注册用户QQ号为:" + user.getLoginName());
+                    user.setAuthorityCode(AccountRegTypeEnum.ACCOUNT_OICQ.getAuth());
+                    user.setRoleName(AccountRegTypeEnum.ACCOUNT_OICQ.getDes());
+                    break;
+                case 2:
+                    LOGGER.info("正在注册用户微信号为:" + user.getLoginName());
+                    user.setAuthorityCode(AccountRegTypeEnum.ACCOUNT_WECHAT.getAuth());
+                    user.setRoleName(AccountRegTypeEnum.ACCOUNT_WECHAT.getDes());
+                    break;
+                default:
+                    LOGGER.error("用户注册失败，未知注册类型！");
+                    flag = false;
+                    break;
+            }
+            if (flag) {
+                try {
+                    user.setAccountStatus(AccountStatusEnum.NORMAL.getCode());
+                    user.setUuid(UUIDUtil.getUUID());
+                    user.setOperateTime(new Date());
+                    user.setCreateTime(new Date());
+                    res = doReg(user);
+                } catch (Exception e) {
+                    LOGGER.error("execute doReg error!", e);
+                    throw new RuntimeException(e);
+                }
+                afterReg();
+            } else {
+                return Result.err("未知注册类型！");
+            }
+        }
+        return res;
+    }
+}

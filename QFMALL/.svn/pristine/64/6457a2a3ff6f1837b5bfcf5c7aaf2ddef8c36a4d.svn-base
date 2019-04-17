@@ -1,0 +1,146 @@
+package cn.funwx.mall.pojo;
+
+
+import cn.funwx.mall.pojo.base.BaseEntity;
+
+import java.math.BigDecimal;
+
+/**
+ * @author chj
+ * @description 订单管理
+ * @date 2018/8/16 20:38
+ */
+public class OrderManage extends BaseEntity {
+    /**
+     * 订单编号
+     **/
+    private String orderNo;
+    /**
+     * 商品编号
+     **/
+    private String goodNo;
+    /**
+     * 商品ID
+     **/
+    private Integer goodId;
+    /**
+     * 商品价格
+     **/
+    private BigDecimal goodPrice;
+    /**
+     * 商品数量
+     **/
+    private Integer goodNum;
+    /**
+     * 订单状态
+     **/
+    private Integer orderStatus;
+    /**
+     * 订单创建类型
+     **/
+    private Integer orderCreateStatus;
+    /**
+     * 创建人ID
+     **/
+    private Long orderCreaterId;
+    /**
+     * 创建人UUID
+     **/
+    private String orderCreaterUUID;
+    /**
+     * 厂商
+     **/
+    private String manufacturer;
+    /**
+     * 是否删除
+     **/
+    private Integer idDel;
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public String getGoodNo() {
+        return goodNo;
+    }
+
+    public void setGoodNo(String goodNo) {
+        this.goodNo = goodNo;
+    }
+
+    public Integer getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
+    }
+
+    public BigDecimal getGoodPrice() {
+        return goodPrice;
+    }
+
+    public void setGoodPrice(BigDecimal goodPrice) {
+        this.goodPrice = goodPrice;
+    }
+
+    public Integer getGoodNum() {
+        return goodNum;
+    }
+
+    public void setGoodNum(Integer goodNum) {
+        this.goodNum = goodNum;
+    }
+
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Long getOrderCreaterId() {
+        return orderCreaterId;
+    }
+
+    public void setOrderCreaterId(Long orderCreaterId) {
+        this.orderCreaterId = orderCreaterId;
+    }
+
+    public String getOrderCreaterUUID() {
+        return orderCreaterUUID;
+    }
+
+    public void setOrderCreaterUUID(String orderCreaterUUID) {
+        this.orderCreaterUUID = orderCreaterUUID;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public Integer getIdDel() {
+        return idDel;
+    }
+
+    public void setIdDel(Integer idDel) {
+        this.idDel = idDel;
+    }
+
+    public Integer getOrderCreateStatus() {
+        return orderCreateStatus;
+    }
+
+    public void setOrderCreateStatus(Integer orderCreateStatus) {
+        this.orderCreateStatus = orderCreateStatus;
+    }
+}

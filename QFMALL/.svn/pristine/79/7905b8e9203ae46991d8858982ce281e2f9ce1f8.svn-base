@@ -1,0 +1,28 @@
+package cn.funwx.mall.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import cn.funwx.mall.dto.QuestionDTO;
+
+/**
+ * @author chens
+ * @description 题目
+ * @date 2018/9/10 20:04
+ */
+@Repository
+public interface QuestionDao {
+
+	/**
+	 * 题目列表
+	 * 
+	 * @param chapterId
+	 * @param type
+	 * @return
+	 */
+	List<QuestionDTO> findQuestionListByTypeChapterId(@Param("type") Integer type, @Param("chapterId") String chapterId,
+			@Param("parentId") Integer parentId);
+
+}

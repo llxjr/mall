@@ -1,0 +1,31 @@
+package cn.funwx.mall.dao;
+
+import cn.funwx.mall.pojo.OrderManage;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 订单管理
+ * @date 2018/9/4 14:39
+ */
+@Repository
+public interface OrderManageDao {
+
+    /**
+     * 根据用户id获取订单集合
+     *
+     * @param userId
+     * @return
+     */
+    List<OrderManage> findOrderManageByUserId(String userId);
+
+    /**
+     * 插入
+     *
+     * @param orderManage
+     * @return
+     */
+    int insert(OrderManage orderManage);
+}

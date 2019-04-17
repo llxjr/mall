@@ -1,0 +1,34 @@
+package cn.funwx.mall.dao;
+
+import cn.funwx.mall.dto.ChapterDTO;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/7 16:52
+ */
+public interface ChapterDao {
+
+    /**
+     * 根据课程id获取章节列表
+     * @param courseId
+     * @return
+     */
+    List<ChapterDTO> findChaptersByCourseId(Integer courseId);
+
+    /**
+     * 根据父id获取子章节
+     * @param parentId
+     * @return
+     */
+    List<ChapterDTO> findChildChaptersByParentId(Integer parentId);
+
+    /**
+     * 根据主键获取章节
+     * @param id
+     * @return
+     */
+    ChapterDTO getChapterById(Integer id);
+}

@@ -1,0 +1,51 @@
+package cn.funwx.mall.controller.wx;
+
+import cn.funwx.mall.dto.CourseDTO;
+import cn.funwx.mall.service.CourseService;
+import cn.funwx.mall.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 微信课程接口
+ * @date 2018/9/9 20:50
+ */
+@RestController
+@RequestMapping("/wx/course")
+public class CourseController {
+
+    private static Logger LOG = LoggerFactory.getLogger(CourseController.class);
+
+    @Autowired
+    private CourseService courseService;
+
+    @RequestMapping("/list/{categoryId}")
+    public Result findCourseById(@PathVariable Integer categoryId) {
+        List<CourseDTO> dtos = null;
+        try {
+            dtos = courseService.findCoursesByCategoryId(categoryId);
+        } catch (Exception e) {
+            LOG.error("获取课程失败", e);
+            return Result.err("获取课程异常");
+        }
+        return Result.sucT(dtos);
+    }
+
+    @RequestMapping("/{id}")
+    public Result getCourseById(@PathVariable Integer id) {
+        try {
+            CourseDTO dto = courseService.getCourseById(id);
+            return Result.sucT(dto);
+        } catch (Exception e) {
+            LOG.error("获取课程失败", e);
+            return Result.err("获取课程失败");
+        }
+    }
+}

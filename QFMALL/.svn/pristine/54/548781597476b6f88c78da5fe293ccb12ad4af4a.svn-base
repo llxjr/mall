@@ -1,0 +1,33 @@
+package cn.funwx.mall.dao;
+
+import cn.funwx.mall.dto.CategoryDTO;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 类目
+ * @date 2018/9/7 16:47
+ */
+public interface CategoryDao {
+
+    /**
+     * 获取全部类目
+     * @return
+     */
+    List<CategoryDTO> findAllCategorys();
+
+    /**
+     * 根据父类目id获取所有子类目
+     * @param id
+     * @return
+     */
+    List<CategoryDTO> findChildCategorysByParentId(Integer id);
+
+    /**
+     * 根据id获取类目
+     * @param id
+     * @return
+     */
+    CategoryDTO getCategoryById(Integer id);
+}

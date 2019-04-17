@@ -1,0 +1,54 @@
+package cn.funwx.mall.controller.wx;
+
+import cn.funwx.mall.dto.CategoryDTO;
+import cn.funwx.mall.service.CategoryService;
+import cn.funwx.mall.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description 微信类目接口
+ * @date 2018/9/9 20:15
+ */
+@RestController
+@RequestMapping("/wx/category")
+public class CategoryController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @RequestMapping("/list")
+    public Result findAllCategorys() {
+        List<CategoryDTO> dtoList = null;
+        try {
+            dtoList = categoryService.findAllCategorys();
+        } catch (Exception e) {
+            LOG.error("获取所有类目失败", e);
+            return Result.err("获取所有类目异常");
+        }
+        return Result.sucT(dtoList);
+    }
+
+    @RequestMapping("/{categoryId}")
+    public Result getCategoryById(@PathVariable Integer categoryId) {
+        if (categoryId != null && categoryId != 0) {
+            try {
+                CategoryDTO category = categoryService.getCategoryById(categoryId);
+                return Result.sucT(category);
+            } catch (Exception e) {
+                LOG.error("获取类目失败", e);
+                return Result.err("获取类目异常");
+            }
+        }
+        return Result.err("类目ID错误");
+    }
+}

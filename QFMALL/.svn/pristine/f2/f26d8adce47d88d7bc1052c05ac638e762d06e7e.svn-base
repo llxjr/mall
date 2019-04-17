@@ -1,0 +1,28 @@
+package cn.funwx.mall.service;
+
+import cn.funwx.mall.pojo.Goods;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/4 20:27
+ */
+public interface GoodsService {
+
+    /**
+     * 查找所有商品
+     *
+     * @return
+     */
+    List<Goods> findAllGoods();
+
+    /**
+     * 根据id获取单个商品
+     *
+     * @param id
+     * @return
+     */
+    Goods getGoodById(Integer id);
+}

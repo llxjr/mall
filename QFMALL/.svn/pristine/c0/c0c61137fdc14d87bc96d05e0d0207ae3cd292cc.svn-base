@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.funwx.mall.dao.CourseDao">
+
+    <resultMap id="Base_Result_Map" type="cn.funwx.mall.dto.CourseDTO">
+        <result property="id" column="id"></result>
+        <result property="courseName" column="course_name"></result>
+        <result property="categoryId" column="category_id"></result>
+        <result property="tag" column="tag"></result>
+        <result property="isNotPaper" column="is_not_paper"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id,
+      course_name AS  courseName,
+      category_id AS categoryId,
+      tag,
+      is_not_paper AS isNotPaper
+    </sql>
+
+    <select id="findCoursesByCategoryId" resultMap="Base_Result_Map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_course
+        WHERE category_id = #{categoryId}
+    </select>
+
+    <select id="getCourseById" resultMap="Base_Result_Map" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_course
+        WHERE id = #{id}
+    </select>
+
+</mapper>

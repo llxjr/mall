@@ -1,0 +1,117 @@
+package cn.funwx.mall.dto;
+
+import java.util.List;
+
+/**
+ * @author liu66
+ * @description 章节
+ */
+public class ChapterDTO {
+    /**
+     * 主键id
+     */
+    private Integer id;
+    /**
+     * 类目ID
+     */
+    private Integer categoryId;
+    /**
+     * 课程ID
+     */
+    private Integer courseId;
+
+    /**
+     * 章节名称
+     */
+    private String chapterName;
+    /**
+     * 是否有视频 0无 1有
+     */
+    private Integer hasVideo;
+    /**
+     * 是否免费 0不是 1是
+     */
+    private Integer isFree;
+    /**
+     * 是否是一级章节 0是 1不是
+     */
+    private Integer hasChild;
+    /**
+     * 父章节ID
+     */
+    private Integer parentId;
+
+    List<ChapterDTO> childs;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getChapterName() {
+        return chapterName;
+    }
+
+    public List<ChapterDTO> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(List<ChapterDTO> childs) {
+        this.childs = childs;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
+    }
+
+    public Integer getHasVideo() {
+        return hasVideo;
+    }
+
+    public void setHasVideo(Integer hasVideo) {
+        this.hasVideo = hasVideo;
+    }
+
+    public Integer getIsFree() {
+        return isFree;
+    }
+
+    public void setIsFree(Integer isFree) {
+        this.isFree = isFree;
+    }
+
+    public Integer getHasChild() {
+        return hasChild;
+    }
+
+    public void setHasChild(Integer hasChild) {
+        this.hasChild = hasChild;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+}

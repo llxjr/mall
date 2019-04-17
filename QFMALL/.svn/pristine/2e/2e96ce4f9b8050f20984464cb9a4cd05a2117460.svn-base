@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.funwx.mall.dao.ChapterDao">
+
+    <resultMap id="Base_Result_Map" type="cn.funwx.mall.dao.ChapterDao">
+        <result property="id" column="id"></result>
+        <result property="categoryId" column="category_id"></result>
+        <result property="courseId" column="course_id"></result>
+        <result property="chapterName" column="chapter_name"></result>
+        <result property="hasVideo" column="has_child"></result>
+        <result property="isFree" column="is_free"></result>
+        <result property="parentId" column="parent_id"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        category_id as categoryId,
+        course_id as courseId,
+        chapter_name as chapterName,
+        has_video as hasVideo,
+        is_free as isFree,
+        parent_id as parentId
+    </sql>
+
+    <select id="findChaptersByCourseId" resultMap="Base_Result_Map" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_chapter
+        WHERE course_id = #{courseId}
+    </select>
+
+    <select id="findChildChaptersByParentId" resultMap="Base_Result_Map" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_chapter
+        WHERE parent_id = #{parentId}
+    </select>
+
+    <select id="getChapterById" resultMap="Base_Result_Map" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM qf_chapter
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,31 @@
+package cn.funwx.mall.service.impl;
+
+import cn.funwx.mall.dao.PurchaseGoodsDao;
+import cn.funwx.mall.pojo.PurchasedGoods;
+import cn.funwx.mall.service.PurchaseGoodService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/4 17:20
+ */
+@Service
+public class PurchaseGoodServiceImpl implements PurchaseGoodService {
+
+    @Autowired
+    private PurchaseGoodsDao purchaseGoodsDao;
+
+    public List<PurchasedGoods> findPurchaseGoodsByUserId(String userId) {
+        return purchaseGoodsDao.findPurchaseGoodsByUserId(userId);
+    }
+
+    @Transactional
+    public int insert(PurchasedGoods purchasedGoods) {
+        return purchaseGoodsDao.insert(purchasedGoods);
+    }
+}

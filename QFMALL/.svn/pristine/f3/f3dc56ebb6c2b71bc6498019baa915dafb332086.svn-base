@@ -1,0 +1,46 @@
+package cn.funwx.mall.service.impl;
+
+import cn.funwx.mall.common.Constants;
+import cn.funwx.mall.dao.UserLoginDao;
+import cn.funwx.mall.pojo.User;
+import cn.funwx.mall.service.UserRegisterService;
+import cn.funwx.mall.utils.EncryptUtil;
+import cn.funwx.mall.utils.Result;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/8/31 15:50
+ */
+@Service
+public class WxUserRegisterService extends UserRegisterService {
+
+    @Autowired
+    private UserLoginDao userLoginDao;
+
+    @Override
+    protected Result beforeReg(User user, String vCode) {
+        if (StringUtils.isBlank(vCode)) {
+            if (StringUtils.isNotBlank(user.getUnionId()) && user.getUnionId().startsWith("o")) {
+                return Result.suc();
+            }
+        }
+        return Result.err("微信用户注册验证码异常！");
+    }
+
+    @Override
+    @Transactional
+    protected Result doReg(User user) {
+        //默认密码
+        user.setPassword(EncryptUtil.MD5Encrypt(Constants.WX_USER_DEFAULT_PWD));
+        int result = userLoginDao.insertWxUser(user);
+        if (result != 1) {
+            return Result.err();
+        }
+        return Result.suc();
+    }
+}

@@ -1,0 +1,32 @@
+package cn.funwx.mall.service;
+
+import cn.funwx.mall.pojo.Goods;
+import cn.funwx.mall.pojo.OrderManage;
+import cn.funwx.mall.pojo.User;
+
+import java.util.List;
+
+/**
+ * @author chj
+ * @description
+ * @date 2018/9/4 17:16
+ */
+public interface OrderManageService {
+
+    /**
+     * 根据用户id获取订单集合
+     *
+     * @param userId
+     * @return
+     */
+    List<OrderManage> findOrderManageByUserId(String userId);
+
+    /**
+     * 新增
+     *
+     * @param user  用户
+     * @param goods 商品
+     * @return
+     */
+    int insert(User user, Goods goods);
+}
