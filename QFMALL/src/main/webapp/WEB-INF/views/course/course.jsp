@@ -3,6 +3,10 @@
 <html>
 <head>
     <title>青蜂商城</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="styles/css/style.css">
+    <script src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-func.js"></script>
 <script type="text/javascript">
 	console.log("课程");
 </script>
@@ -11,21 +15,193 @@
 <body>
 <!--Index Banner-->
 
+	<!-- Main -->
+	<div id="main">
+<!-- Content -->
+		<div id="content">
+			<!-- Box -->
+			<div class="box">
+				<h2><span>CATEGORY ONE</span></h2>
+				
+				<a href="#" class="see-all">See all articles in this category</a>
+				
+				<div class="cl">&nbsp;</div>
+				
+				<div class="posts">
+					<!-- Post -->
+				    <div class="post">
+				    	<div class="image">
+				    		<a href="#"><img src="/images/english1.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<!-- Post -->
+				   <div class="post last">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-2.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Maecenas scelerisque sapien </a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+				    <div class="cl">&nbsp;</div>
+					<!-- Post -->
+				    <div class="post">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-3.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Cras ac ultrices ipsum. </a></h4>
+				    		<p>Vivamus adipiscing dui at turpis imperdiet congue. Fusce posuere augue et odio bibendum non dictum nisi posuere. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<!-- Post -->
+				    <div class="post last">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-4.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Nunc ac lorem id ipsum.</a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<div class="cl">&nbsp;</div>
+				</div>
+			</div>
+			<!-- /Box -->
+			
+			<!-- Box -->
+			<div class="box">
+				<h2><span>CATEGORY TWO</span></h2>
+				
+				<a href="#" class="see-all">See all articles in this category</a>
+				
+				<div class="cl">&nbsp;</div>
+				
+				<div class="posts">
+					<!-- Post -->
+				    <div class="post">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-5.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<!-- Post -->
+				    <div class="post last">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-6.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Maecenas scelerisque sapien </a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+				    <div class="cl">&nbsp;</div>
+					<!-- Post -->
+				    <div class="post">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-1.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Cras ac ultrices ipsum. </a></h4>
+				    		<p>Vivamus adipiscing dui at turpis imperdiet congue. Fusce posuere augue et odio bibendum non dictum nisi posuere. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<!-- Post -->
+				    <div class="post last">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-1.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Nunc ac lorem id ipsum.</a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<div class="cl">&nbsp;</div>
+				</div>
+			</div>
+			<!-- /Box -->
+						
+			<!-- Box -->
+			<div class="box last">
+				<h2><span>CATEGORY THREE</span></h2>
+				
+				<a href="#" class="see-all">See all articles in this category</a>
+				
+				<div class="cl">&nbsp;</div>
+				
+				<div class="posts">
+					<!-- Post -->
+				    <div class="post">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-7.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<!-- Post -->
+				    <div class="post last">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-8.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Maecenas scelerisque sapien </a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+				    <div class="cl">&nbsp;</div>
+					<!-- Post -->
+				    <div class="post">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-9.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Cras ac ultrices ipsum. </a></h4>
+				    		<p>Vivamus adipiscing dui at turpis imperdiet congue. Fusce posuere augue et odio bibendum non dictum nisi posuere. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<!-- Post -->
+				    <div class="post last">
+				    	<div class="image">
+				    		<a href="#"><img src="styles/css/images/post-10.jpg" alt="" /></a>
+				    	</div>
+				    	<div class="data">
+				    		<h4><a href="#">Nunc ac lorem id ipsum.</a></h4>
+				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
+				    	</div>
+				    </div>
+				    <!-- /Post -->
+					<div class="cl">&nbsp;</div>
+				</div>
+			</div>
+			<!-- /Box -->
+			
+			<div class="cl">&nbsp;</div>	
+		</div>
+		<!-- /Content -->
 
-
-<!--Index Banner End-->
-<!--container1 Begin-->
-<div class="index_main_container1">
-    <div class="page_center_wrapper clearfix">
-    </div>
-</div>
-<!--container1 End-->
-<!--container2 Begin-->
-<div class="index_main_container2">
-    <div class="page_center_wrapper">
-    </div>
-</div>
-<!--container2 End-->
+	</div>
+	<!-- /Main -->
 <!--Footer Begin-->
 <div class="page_footer_container">
     <div class="page_center_wrapper">
