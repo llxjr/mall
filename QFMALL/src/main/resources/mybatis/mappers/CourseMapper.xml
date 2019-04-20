@@ -5,13 +5,29 @@
 
 <mapper namespace="cn.funwx.mall.dao.CourseDao">
 
+    
     <sql id="Base_Column_List">
-    	id,course_name as courseName,description,category_id as categoryId,tag,is_del as isDel,
-    	is_not_paper as isNotPaper,course_img as courseImg,
-    	create_time as createTime,create_by as createBy ,update_time as updateTime,
-    	update_by as updateBy
+    	id,`course_name` as courseName,description,`category_id` as categoryId,price,tag,`is_del` as isDel,
+    	`is_not_paper` as isNotPaper,`course_img` as courseImg,
+    	`create_time` as createTime,`create_by` as createBy ,`update_time` as updateTime,
+    	`update_by` as updateBy
     </sql>
 
+	<resultMap type="Course" id="CourseResult">
+        <result property="id" column="id"/>
+        <result property="courseName" column="course_name"/>
+        <result property="description" column="description"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="price" column="price"/>
+        <result property="tag" column="tag"/>
+        <result property="isDel" column="is_del"/>
+        <result property="isNotPaper" column="is_not_paper" />
+        <result property="courseImg" column="course_img"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+    </resultMap>
     
 	<select id="findByCategoryId" parameterType="int" resultType="Course">
 		SELECT
@@ -20,5 +36,17 @@
 		WHERE category_id in (select c.id from qf_category c where c.parent_id=#{0})
 	</select>
 
+	<select id="getAllCourse" resultType="Course">
+    	SELECT
+		<include refid="Base_Column_List" />
+		FROM qf_course
+    </select>
+    
+    <select id="findCourseById"  resultMap="CourseResult">
+    	select 
+    	<include refid="Base_Column_List"/>
+    	from qf_course
+    	WHERE id = #{id}
+    </select>
     
 </mapper>

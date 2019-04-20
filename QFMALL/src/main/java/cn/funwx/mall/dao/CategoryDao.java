@@ -14,5 +14,5 @@ import cn.funwx.mall.pojo.Category;
 public interface CategoryDao {
 	
 	public List<Category>findCategory(int pid);
-
+	public List<Category> findAllCategory();
 }

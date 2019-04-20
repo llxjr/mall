@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.funwx.mall.dao.GoodsDao">
+	
+	    <sql id="Base_Column_List">
+	    	id,`category_id` as categoryId,`course_id` as courseId, `goods_name` as goodsName,`goods_no` as goodsNo,
+	    	`goods_price` as goodsPrice,`goods_valid_duration` as goodsValidDuration, `is_not_entity` as isNotEntity,
+	    	`is_blank` as isBlank,`is_del` as isDel,describe,`goods_img` as goodsImg,detail,
+	    	`create_time` as createTime,`create_by` as createBy ,`update_time` as updateTime,
+	    	`update_by` as updateBy
+    	</sql>
+
+    <resultMap type="Goods" id="GoodsResult">
+        <result property="id" column="id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="goodsName" column="goods_name"/>
+        <result property="goodsNo" column="goods_no"/>
+        <result property="goodsPrice" column="goods_price"/>
+        <result property="goodsValidDuration" column="goods_valid_duration"/>
+        <result property="isNotEntity" column="is_not_entity"/>
+        <result property="isBlank" column="is_blank"/>
+        <result property="isDel" column="is_del"/>
+        <result property="createTime" column="create_time"/>
+         <result property="createBy" column="create_by"/>
+          <result property="updateTime" column="update_time"/>
+           <result property="updateBy" column="update_by"/>
+            <result property="describe" column="describe"/>
+             <result property="goodsImg" column="goods_img"/>
+              <result property="detail" column="detail"/>
+              
+    </resultMap>
+
+    <select id="findGoods" parameterType="Map"  resultMap="GoodsResult">
+       SELECT id,category_id,course_id,goods_name,goods_no,goods_price,goods_valid_duration,is_not_entity,is_blank,is_del,create_time,create_by,
+       update_time,update_by,`describe`,goods_img,detail
+       FROM qf_goods 
+        <where>
+            <if test="goodsName!=null and goodsName!='' ">
+                and goods_name like #{goodsName}
+            </if>
+        </where>
+       
+    </select>
+    <select id="getTotalGood" parameterType="Map" resultType="Long">
+        select count(*) from qf_goods
+        <where>
+            <if test="goodsName!=null and goodsName!='' ">
+                and goods_name like #{goodsName}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addGoods" parameterType="Goods">
+       insert into 
+       qf_goods (category_id,course_id,goods_name,goods_no,goods_price,
+       goods_valid_duration,is_not_entity,is_blank,is_del,create_time,create_by,
+       `describe`,goods_img,detail)
+       values(#{categoryId},#{courseId},#{goodsName},#{goodsNo},
+       #{goodsPrice},#{goodsValidDuration},#{isNotEntity},#{isBlank},
+       #{isDel},#{createTime},#{createBy},
+       #{describe},#{goodsImg},#{detail})
+    </insert>
+
+    <update id="updateGoods" parameterType="Goods">
+		update qf_goods
+		set
+		category_id=#{category_id},course_id=#{course_id},
+		goods_name=#{goods_name},goods_no=#{goods_no},
+		goods_price=#{goods_price},goods_valid_duration=#{goods_valid_duration},
+		is_not_entity=#{is_not_entity},is_blank=#{is_blank},is_del=#{is_del},
+		update_time=#{update_time},update_by=#{update_by},
+		`describe`=#{describe},goods_img=#{goods_img},detail=#{detail}
+		where id=#{id}
+	</update>
+
+    <delete id="deleteGoods" parameterType="int">
+		delete from
+		qf_goods
+		where id=#{id}
+	</delete>
+	<select id="findAllGoods" resultType="Goods">
+     SELECT id,category_id,course_id,goods_name,goods_no,goods_price,goods_valid_duration,is_not_entity,is_blank,is_del,create_time,create_by,
+       update_time,update_by,`describe`,goods_img,detail
+       FROM qf_goods 
+    </select>
+    <select id="findbyid" parameterType="int"  resultMap="GoodsResult">
+         SELECT id,category_id,course_id,goods_name,goods_no,goods_price,goods_valid_duration,is_not_entity,is_blank,is_del,create_time,create_by
+     ,update_time,update_by,`describe`,goods_img,detail 
+       FROM qf_goods 
+       where id= #{id}
+    </select>
+    
+</mapper> 

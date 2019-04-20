@@ -19,7 +19,7 @@ public class CallbackMappingJackson2HttpMessageConverter extends MappingJackson2
 
     // 做jsonp的支持的标识，在请求参数中加该参数
     private String callbackName;
-
+ 
     @Override
     protected void writeInternal(Object object, HttpOutputMessage outputMessage) throws IOException,
             HttpMessageNotWritableException {

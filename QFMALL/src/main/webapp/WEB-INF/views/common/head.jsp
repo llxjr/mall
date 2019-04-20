@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/style.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 </head>
 <script type="text/javascript">
 	
@@ -20,7 +20,7 @@
         async: false,
         dataType: "json",
         success: function (r) {
-        	
+			 window.location.reload();
         }
     });
     function logout(){
@@ -85,7 +85,7 @@
             <div class="user_wrapper clearfix">
                 <a class="user_item" href="index">购物车(0)</a>
                 <a class="user_item" href="index">我的订单</a>
-                <a class="user_item last_user_item" href="index">我的课程</a>
+                <a class="user_item last_user_item" href="myGoods.do">我的课程</a>
                	<a class="user_avatar" href="mypage"><img src="${qfUser.avatarUrl}" alt=""></a>
                 <c:if test="${qfUser == null }">
                     <a class="login_item" href="login.html">登录</a>

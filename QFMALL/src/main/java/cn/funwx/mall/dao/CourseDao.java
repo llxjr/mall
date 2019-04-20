@@ -14,5 +14,6 @@ import cn.funwx.mall.pojo.Course;
 public interface CourseDao {
 	
 	public List<Course>findByCategoryId(int categoryId);
-
+	public List<Course> getAllCourse();
+	public Course findCourseById(int id);
 }

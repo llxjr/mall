@@ -65,6 +65,8 @@ public class UserLoginController {
     private static final String MY_PAGE = "/user/my_information";
     
     private static final String MYCOURSE_PAGE = "/course/course";
+    
+    private static final String MYGOODS_PAGE = "/mygoods/myGoods";
 
     @RequestMapping("")
     public ModelAndView index() {
@@ -79,6 +81,11 @@ public class UserLoginController {
     @RequestMapping("/course")
     public ModelAndView course() {
         return new ModelAndView(MYCOURSE_PAGE);
+    }
+    
+    @RequestMapping("/myGoods")
+    public ModelAndView myGoods() {
+        return new ModelAndView(MYGOODS_PAGE);
     }
 
     /**

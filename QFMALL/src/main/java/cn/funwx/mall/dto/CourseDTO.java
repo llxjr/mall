@@ -1,37 +1,35 @@
 package cn.funwx.mall.dto;
 
+import java.util.List;
+
 import cn.funwx.mall.pojo.Category;
+import cn.funwx.mall.pojo.Chapter;
+import cn.funwx.mall.pojo.Course;
 
 /**
  * @author liu66
  * @description 课程
  * 
  */
-public class CourseDTO {
-    /**
-     * 主键id
-     */
-    private Integer id;
-    /**
-     * 课程名称
-     */
-    private String courseName;
-    /**
-     * 描述
-     */
-    private String description;
+public class CourseDTO  extends Course{
     /**
      * 课程类目
      */
     private Category category;
-    /**
-     * 课程标签
-     */
-    private String tag;
-    /**
-     * 是否启用试卷
-     */
-    private int isNotPaper;
-
+    /** 章节 */
+    private List<Chapter> chapters;
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public List<Chapter> getChapters() {
+		return chapters;
+	}
+	public void setChapters(List<Chapter> chapters) {
+		this.chapters = chapters;
+	}
+    
     
 }

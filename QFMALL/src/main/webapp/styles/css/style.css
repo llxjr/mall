@@ -30,7 +30,63 @@ h6 a { font-weight:bold; color:#64c5ff; }
 
 input, textarea, select { font-size: 14px; font-family: Arial, Helvetica, sans-serif; font-weight:bold; color:#a5a5a5; }
 textarea { overflow: auto; }
-
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 16px/100% 'Microsoft yahei',Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+.bigrounded {
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+}
+.medium {
+	font-size: 12px;
+	padding: .4em 1.5em .42em;
+}
+.small {
+	font-size: 11px;
+	padding: .2em 1em .275em;
+}
+/* blue */
+.blue {
+	color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+.blue:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.blue:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
 /* 
 =====================================================
 	Shells and main classes
@@ -105,10 +161,10 @@ textarea { overflow: auto; }
 ul { list-style:none; }
 
 /* Box */
-#main .box { background:#fff url(images/content-divider.gif) 297px top repeat-y; margin-bottom:13px; padding:0 15px 0px 12px; height:300px; width: 100%}
+#main .box { background:#fff url(images/content-divider.gif) 297px top repeat-y; margin-bottom:13px; padding:0 15px 0px 12px; height:300px; width: 95%}
 
 /* Content */
-#content { float:left; width:100%; }
+#content {margin-left:20px; float:left; width:100%; }
 
 #content h2 { background:url(images/content-heading.gif) left top no-repeat; padding-left: 3px; position:relative; top:-3px; left:-11px; float:left; }
 #content h2 span { float:left; background:url(images/content-heading.gif) right top no-repeat; padding:10px 13px 11px 4px; }

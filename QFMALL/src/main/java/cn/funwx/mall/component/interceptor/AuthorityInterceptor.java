@@ -10,11 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
-/**
- * @author chj
- * @description 权限拦截器
- * @date 2018/8/23 14:59
- */
 public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 
     @Deprecated

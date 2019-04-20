@@ -126,7 +126,7 @@
             </div>
             <div class="qrcode_wrapper fl">
                 <img src="images/weixin.png" alt="">
-                <p><i class="wechat_icon"></i>微信扫一扫，使用小程序</p>
+                <p style="color:#6C6C6C"><i class="wechat_icon" ></i>微信扫一扫，使用小程序</p>
             </div>
             <div class="contact_wrapper fr">
                 <p class="contact_tel">400-8888-8888</p>
@@ -138,13 +138,13 @@
                 </div>
             </div>
         </div>
-        <p class="copyright_bar">山外有山，人外有人，学习有青峰教育@2020-20-20。</p>
+        <p class="copyright_bar"  style="color:#6C6C6C">山外有山，人外有人，学习有青峰教育@2020-20-20</p>
     </div>
 </div>
 <!--Footer End-->
 <script src="vendors/jquery/1.42/jquery1.42.min.js"></script>
 <script src="vendors/SuperSlide/2.1.2/jquery.SuperSlide.2.1.2.js"></script>
-<script>
+<script type="text/javascript">
     // 首页轮播 需要引用SuperSlide
     $(".index_banner_container").slide({
         titleCell:".hd ul",

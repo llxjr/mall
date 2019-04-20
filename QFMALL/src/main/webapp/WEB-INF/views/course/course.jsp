@@ -1,14 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../common/head.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="qfUser" value="${sessionScope.qf_user}"></c:set>
 <html>
 <head>
     <title>青蜂商城</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="styles/css/style.css">
-    <script src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-func.js"></script>
+	<script type="text/javascript" src="js/course/course.js"></script>
 <script type="text/javascript">
-	console.log("课程");
+	$.ajax({
+        url: "${ctx}/course/courselist",
+        type: "POST",
+        data: {
+        },
+        async: false,
+        dataType: "json",
+        success: function (r) {
+			 window.location.reload();
+        }
+    });
 </script>
 
 </head>
@@ -19,7 +33,7 @@
 	<div id="main">
 <!-- Content -->
 		<div id="content">
-			<!-- Box -->
+		<!-- Box -->
 			<div class="box">
 				<h2><span>CATEGORY ONE</span></h2>
 				
@@ -65,7 +79,7 @@
 					<!-- Post -->
 				    <div class="post last">
 				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-4.jpg" alt="" /></a>
+				    		<a href="#"><img src="/images/math1.jpg" alt="" /></a>
 				    	</div>
 				    	<div class="data">
 				    		<h4><a href="#">Nunc ac lorem id ipsum.</a></h4>
@@ -77,6 +91,36 @@
 				</div>
 			</div>
 			<!-- /Box -->
+			
+			<c:forEach var="category" items="${categoryDTOs}">
+				<!-- Box -->
+				<div class="box">
+					<h2><span>${category.categoryName}</span></h2>
+					<a href="#" class="see-all">查看更多</a>
+					<div class="cl">&nbsp;</div>
+					
+					<!-- Posts -->
+					<div class="posts">
+						<c:forEach var="course" items="${category.courseDTOs}">
+							<!-- Post -->
+						    <div class="post">
+						    	<div class="image">
+						    		<a href="#"><img src=" /images/${course.courseImg }" alt="" /></a>
+						    	</div>
+						    		<div class="data">
+						    			<h4><a href="#">${course.courseName }</a></h4>
+						    			<p id="courseId" name="courseId" value="${course.id }">
+						    			<a>${course.price }￥</a><a href="#" class="button blue small" onclick="buy(${course.id},'${sessionScope.qf_user.uuid}')">购买</a>
+						    			<c:forEach  var="chapter" items="${course.chapters}">
+						    				<p>${chapter.chapterName } </p>
+						    			</c:forEach>
+						    		</div>
+						    </div>
+						    <!-- /Post -->
+						</c:forEach>
+					</div>
+				</div>
+			</c:forEach>
 			
 			<!-- Box -->
 			<div class="box">
@@ -137,64 +181,6 @@
 			</div>
 			<!-- /Box -->
 						
-			<!-- Box -->
-			<div class="box last">
-				<h2><span>CATEGORY THREE</span></h2>
-				
-				<a href="#" class="see-all">See all articles in this category</a>
-				
-				<div class="cl">&nbsp;</div>
-				
-				<div class="posts">
-					<!-- Post -->
-				    <div class="post">
-				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-7.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
-				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-					<!-- Post -->
-				    <div class="post last">
-				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-8.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Maecenas scelerisque sapien </a></h4>
-				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-				    <div class="cl">&nbsp;</div>
-					<!-- Post -->
-				    <div class="post">
-				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-9.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Cras ac ultrices ipsum. </a></h4>
-				    		<p>Vivamus adipiscing dui at turpis imperdiet congue. Fusce posuere augue et odio bibendum non dictum nisi posuere. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-					<!-- Post -->
-				    <div class="post last">
-				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-10.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Nunc ac lorem id ipsum.</a></h4>
-				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-					<div class="cl">&nbsp;</div>
-				</div>
-			</div>
-			<!-- /Box -->
 			
 			<div class="cl">&nbsp;</div>	
 		</div>
@@ -227,7 +213,7 @@
             </div>
             <div class="qrcode_wrapper fl">
                 <img src="images/weixin.png" alt="">
-                <p><i class="wechat_icon"></i>微信扫一扫，使用小程序</p>
+                <p style="color:#6C6C6C"><i class="wechat_icon" ></i>微信扫一扫，使用小程序</p>
             </div>
             <div class="contact_wrapper fr">
                 <p class="contact_tel">400-8888-8888</p>
@@ -239,13 +225,13 @@
                 </div>
             </div>
         </div>
-        <p class="copyright_bar">山外有山，人外有人，学习有青峰教育@2020-20-20。</p>
+        <p class="copyright_bar" style="color:#6C6C6C">山外有山，人外有人，学习有青峰教育@2020-20-20。</p>
     </div>
 </div>
 <!--Footer End-->
 <script src="vendors/jquery/1.42/jquery1.42.min.js"></script>
 <script src="vendors/SuperSlide/2.1.2/jquery.SuperSlide.2.1.2.js"></script>
-<script>
+<script  type="text/javascript" >
     // 首页轮播 需要引用SuperSlide
     $(".index_banner_container").slide({
         titleCell:".hd ul",

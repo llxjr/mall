@@ -8,12 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * session 过滤器
- * @author chj
- * @date 2017-12-1
- *
- */
+
 public class SessionFilter extends OncePerRequestFilter{
 
 	@Override

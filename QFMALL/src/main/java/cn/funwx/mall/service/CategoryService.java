@@ -11,5 +11,5 @@ import cn.funwx.mall.pojo.Category;
 public interface CategoryService {
 	
 	public List<Category>findCategory();
-	
+	public List<Category> findAllCategory();
 }

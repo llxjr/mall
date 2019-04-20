@@ -27,12 +27,18 @@ public class CategoryServiceImpl implements CategoryService {
 		int pid=0;
 		List<Category>list=categoryDao.findCategory(pid);
 		for (Category category : list) {
-			if(category.getHasChild()==1){
-				List<Category>child=categoryDao.findCategory(category.getId());
-				category.setChild(child);
-			}
+//			if(category.getHasChild()==1){
+				List<Category> child = categoryDao.findCategory(category.getId());
+				if (child != null && child.size() > 0) {
+					category.setChild(child);
+				}
+//			}
 		}
 		return list;
+	}
+
+	public List<Category> findAllCategory() {
+		return categoryDao.findAllCategory();
 	}
 
 }
