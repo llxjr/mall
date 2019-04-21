@@ -63,9 +63,9 @@ public class UserLoginController {
 
     /** 我的资料   */
     private static final String MY_PAGE = "/user/my_information";
-    
+    /** 课程列表 */
     private static final String MYCOURSE_PAGE = "/course/course";
-    
+    /** 已购课程 */
     private static final String MYGOODS_PAGE = "/mygoods/myGoods";
 
     @RequestMapping("")

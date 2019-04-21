@@ -20,7 +20,10 @@
         async: false,
         dataType: "json",
         success: function (r) {
-			 window.location.reload();
+       		 if(location.href.indexOf("#reloaded")==-1){
+		        location.href=location.href+"#reloaded";
+		        location.reload();
+         	}
         }
     });
     function logout(){

@@ -19,8 +19,11 @@
         },
         async: false,
         dataType: "json",
-        success: function (r) {
-			 window.location.reload();
+        success: function (r) { 
+        	if(location.href.indexOf("#reloaded")==-1){
+		        location.href=location.href+"#reloaded";
+		        location.reload();
+         	}
         }
     });
 </script>

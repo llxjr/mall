@@ -12,16 +12,26 @@
 	<script type="text/javascript" src="js/jquery-func.js"></script>
 	<script type="text/javascript" src="js/course/course.js"></script>
 <script type="text/javascript">
+	console.log("test mygoods~~~");
 	$.ajax({
-        url: "${ctx}/mygoods/findAllGoods",
+        url: "mygoods/findAllGoods",
         type: "POST",
-        data: {
-        },
+        data: {},
         async: false,
         dataType: "json",
         success: function (r) {
-			 window.location.reload();
-        }
+           if (r.resultCode == 200) {
+           		alert("获取课程成功" + r.message);
+           		if(location.href.indexOf("#reloaded")==-1){
+		        location.href=location.href+"#reloaded";
+		        location.reload();
+         	}
+           } else {
+           		alert(r.message);
+             }
+            }, error: function (r) {
+                alert(r.message);
+          }
     });
 </script>
 
@@ -35,7 +45,7 @@
 		<div id="content">
 		<!-- Box -->
 			<div class="box">
-				<h2><span>CATEGORY ONE</span></h2>
+				<h2><span>已购课程</span></h2>
 				
 				<a href="#" class="see-all">See all articles in this category</a>
 				
@@ -100,6 +110,9 @@
 					
 					<!-- Posts -->
 					<div class="posts">
+					<c:if test="${mygooods } == null">
+						<h1>空空如也~</h1>
+					</c:if>
 						<c:forEach var="mygoods" items="${mygoods}">
 							<!-- Post -->
 						    <div class="post">
@@ -110,7 +123,7 @@
 						    			<h4><a href="#">${mygoods.goodsName }</a></h4>
 						    			<p id="mygoodsId" name="mygoodsId" value="${mygoods.id }">
 						    			<a>${mygoods.goodsPrice }￥</a>
-						    			<p>${mygoods.describe } </p>
+						    			<p>${mygoods.description } </p>
 						    		</div>
 						    </div>
 						    <!-- /Post -->

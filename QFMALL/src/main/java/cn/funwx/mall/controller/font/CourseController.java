@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.funwx.mall.common.ResultGenerator;
 import cn.funwx.mall.dto.CategoryDTO;
 import cn.funwx.mall.service.CategoryService;
 import cn.funwx.mall.service.CourseService;
@@ -29,7 +30,7 @@ public class CourseController {
 		System.out.println("test!! courseList");
 		List<CategoryDTO> categoryDTOs = courseService.courseList();
     	request.getSession().setAttribute("categoryDTOs", categoryDTOs);
-        return Result.suc();
+		return ResultGenerator.genSuccessResult();	
 	}
 	
 }

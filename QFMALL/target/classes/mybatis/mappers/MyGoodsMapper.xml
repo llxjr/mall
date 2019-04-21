@@ -5,8 +5,8 @@
 <mapper namespace="cn.funwx.mall.dao.MyGoodsDao">
 	
 		<sql id="Base_Column_List">
-		id, `goods_name` as goodsName, uuid, `category_id` as categoryId, `course_id` as courseId,
-		`goods_no` as goodsNo, `goods_price` as goodsPrice, describe, `goods_img` as goodsImg,
+		id, `goods_name` as goodsName, `uuid`, `category_id` as categoryId, `course_id` as courseId,
+		`goods_no` as goodsNo, `goods_price` as goodsPrice, description, `goods_img` as goodsImg,
     	`create_time` as createTime,
 		`create_by` as createBy,
 		`update_time` as updateTime,
@@ -21,7 +21,7 @@
         <result property="categoryId" column="category_id"/>
         <result property="courseId" column="course_id"/>
         <result property="goodsPrice" column="goods_price"/>
-        <result property="describe" column="describe"/>
+        <result property="description" column="description"/>
         <result property="goodsImg" column="goods_img"/>
         <result property="createTime" column="create_time"/>
         <result property="createBy" column="create_by"/>
@@ -32,9 +32,9 @@
 
     <insert id="addMyGoods" parameterType="MyGoods">
        insert into 
-       qf_my_goods (goods_no,goods_name,uuid,category_id,course_id,goods_price,`describe`,`goods_img`,`create_time`,`create_by`)
+       qf_my_goods (goods_no,goods_name,uuid,category_id,course_id,goods_price,`description`,`goods_img`,`create_time`,`create_by`)
        values(#{goodsNo},#{goodsName},#{uuid},#{categoryId},#{courseId},
-       #{goodsPrice},#{describe},#{goodsImg},#{createTime},#{createBy})
+       #{goodsPrice},#{description},#{goodsImg},#{createTime},#{createBy})
     </insert>
 
     <delete id="deleteMyGoods" parameterType="int">

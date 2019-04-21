@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.funwx.mall.common.Constants;
+import cn.funwx.mall.common.ResultGenerator;
 import cn.funwx.mall.dto.GoodsDTO;
 import cn.funwx.mall.pojo.Course;
 import cn.funwx.mall.pojo.Goods;
@@ -32,17 +34,20 @@ public class MyGoodsController {
 	private CourseService courseService;
 	
 	 @RequestMapping("/findAllGoods")
+	 @ResponseBody
 	 public Result indexPage(HttpServletRequest request) {
+		 request.getSession().removeAttribute("mygoods");
 		 User user = (User) request.getSession().getAttribute(Constants.SESSION_USER);
 		 if(user == null){
-			 return Result.err();
+             return ResultGenerator.genFailResult("亲!您还没有登录~");
 		 }
 		 List<MyGoods> mygoods = myGoodsService.findAllMyGoods();
-		 request.getSession().setAttribute("goods", mygoods);
-		 return Result.suc();
+		 request.getSession().setAttribute("mygoods", mygoods);
+		 return ResultGenerator.genSuccessResult();	
 	 }
 	
 	 @RequestMapping(value = "/addGoods/{id}", method = { RequestMethod.POST })
+	 @ResponseBody
 	 public Result addGoods(@PathVariable Integer id, HttpServletRequest request){
 		 System.out.println("addgoods~~~~~~~~~");
 		 User user = (User) request.getSession().getAttribute(Constants.SESSION_USER);
@@ -54,8 +59,8 @@ public class MyGoodsController {
 		 myGoods.setGoodsName(course.getCourseName());
 		 myGoods.setCategoryId(course.getCategoryId());
 		 myGoods.setGoodsImg(course.getCourseImg());
-		 myGoods.setDescribe(course.getDescription());
+		 myGoods.setDescription(course.getDescription());
 		 myGoodsService.addMyGoods(myGoods);
-		 return Result.suc();
+		 return ResultGenerator.genSuccessResult();	
 	 }
 }

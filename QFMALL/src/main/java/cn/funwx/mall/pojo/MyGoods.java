@@ -10,7 +10,7 @@ public class MyGoods extends BaseEntity{
 	private String goodsName;
 	private String goodsNo;
 	private Double goodsPrice;
-	private String  describe;
+	private String  description;
 	private String goodsImg;
 	public String getUuid() {
 		return uuid;
@@ -48,11 +48,11 @@ public class MyGoods extends BaseEntity{
 	public void setGoodsPrice(Double goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
-	public String getDescribe() {
-		return describe;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getGoodsImg() {
 		return goodsImg;
@@ -63,7 +63,7 @@ public class MyGoods extends BaseEntity{
 	@Override
 	public String toString() {
 		return "MyGoods [uuid=" + uuid + ", categoryId=" + categoryId + ", courseId=" + courseId + ", goodsName="
-				+ goodsName + ", goodsNo=" + goodsNo + ", goodsPrice=" + goodsPrice + ", describe=" + describe
+				+ goodsName + ", goodsNo=" + goodsNo + ", goodsPrice=" + goodsPrice + ", description=" + description
 				+ ", goodsImg=" + goodsImg + "]";
 	}
 	
