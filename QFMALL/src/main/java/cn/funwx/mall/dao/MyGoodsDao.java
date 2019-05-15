@@ -9,7 +9,7 @@ import cn.funwx.mall.pojo.MyGoods;
 @Repository
 public interface MyGoodsDao {
 	
-	public List<MyGoods> findAllMyGoods();
+	public List<MyGoods> findAllMyGoods(String uuid);
 	public void addMyGoods(MyGoods myGoods);
 	
 }

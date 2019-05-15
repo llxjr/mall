@@ -15,8 +15,8 @@ public class MyGoodsServiceImpl implements MyGoodsService {
 	@Autowired
 	private MyGoodsDao myGoodsDao;
 	
-	public List<MyGoods> findAllMyGoods() {
-		return myGoodsDao.findAllMyGoods();
+	public List<MyGoods> findAllMyGoods(String uuid) {
+		return myGoodsDao.findAllMyGoods(uuid);
 	}
 
 	public void addMyGoods(MyGoods myGoods) {

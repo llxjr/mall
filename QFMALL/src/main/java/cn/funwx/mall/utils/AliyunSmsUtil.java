@@ -24,8 +24,8 @@ public class AliyunSmsUtil {
 		final String product = "Dysmsapi";//短信API产品名称（短信产品名固定，无需修改）
 		final String domain = "dysmsapi.aliyuncs.com";//短信API产品域名（接口地址固定，无需修改）
 		//替换成你的AK
-		final String accessKeyId = "accessKeyId";//你的accessKeyId,参考本文档步骤2
-		final String accessKeySecret = "accessKeySecret";//你的accessKeySecret，参考本文档步骤2
+		final String accessKeyId = "LTAI86GW3lYxJzU8";//你的accessKeyId,参考本文档步骤2
+		final String accessKeySecret = "nSHtJtnhTr9f5ul9OFN5PP5PX2DPAo";//你的accessKeySecret，参考本文档步骤2
 		//初始化ascClient,暂时不支持多region（请勿修改）
 		IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId,
 		accessKeySecret);
@@ -39,9 +39,9 @@ public class AliyunSmsUtil {
 			 //必填:待发送手机号。支持以逗号分隔的形式进行批量调用，批量上限为1000个手机号码,批量调用相对于单条调用及时性稍有延迟,验证码类型的短信推荐使用单条调用的方式
 			 request.setPhoneNumbers(phone);
 			 //必填:短信签名-可在短信控制台中找到
-			 request.setSignName("青峰教育");
+			 request.setSignName("郑财典");
 			 //必填:短信模板-可在短信控制台中找到
-			 request.setTemplateCode("SMS_163525969");
+			 request.setTemplateCode("SMS_78550072");
 			 //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为{\"name\":\"Tom\"}
 			 //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
 			 request.setTemplateParam(code);//"{\"name\":\"Tom\", \"code\":\"123\"}"

@@ -42,7 +42,7 @@ public class MyGoodsController {
 		 if(user == null){
              return ResultGenerator.genFailResult("亲!您还没有登录~");
 		 }
-		 List<MyGoods> mygoods = myGoodsService.findAllMyGoods();
+		 List<MyGoods> mygoods = myGoodsService.findAllMyGoods(user.getUuid());
 		 request.getSession().setAttribute("mygoods", mygoods);
 		 return ResultGenerator.genSuccessResult();	
 	 }
@@ -50,8 +50,11 @@ public class MyGoodsController {
 	 @RequestMapping(value = "/addGoods/{id}", method = { RequestMethod.POST })
 	 @ResponseBody
 	 public Result addGoods(@PathVariable Integer id, HttpServletRequest request){
-		 System.out.println("addgoods~~~~~~~~~");
-		 List<MyGoods> mygoodsList = myGoodsService.findAllMyGoods();
+		 User user = (User) request.getSession().getAttribute(Constants.SESSION_USER);
+		 if(user == null){
+             return ResultGenerator.genFailResult("亲!您还没有登录~");
+		 }
+		 List<MyGoods> mygoodsList = myGoodsService.findAllMyGoods(user.getUuid());
 		 if (mygoodsList != null && mygoodsList.size() > 0) {
 			for(MyGoods myGoods : mygoodsList){
 				if (myGoods.getCourseId() == id) {
@@ -59,7 +62,6 @@ public class MyGoodsController {
 				}
 			}
 		}
-		 User user = (User) request.getSession().getAttribute(Constants.SESSION_USER);
 		 Course course = courseService.findCourseById(id);
 		 MyGoods myGoods = new MyGoods();
 		 myGoods.setUuid(user.getUuid());

@@ -6,6 +6,6 @@ import cn.funwx.mall.pojo.MyGoods;
 
 public interface MyGoodsService {
 	
-	public List<MyGoods> findAllMyGoods();
+	public List<MyGoods> findAllMyGoods(String uuid);
 	public void addMyGoods(MyGoods myGoods);
 }

@@ -43,10 +43,11 @@
 		where id=#{id}
 	</delete>
 	
-	<select id="findAllMyGoods" resultMap="MyGoodsResult">
+	<select id="findAllMyGoods" parameterType="String" resultMap="MyGoodsResult">
      	SELECT 
      	<include refid="Base_Column_List" />
      	FROM qf_my_goods 
+        where uuid= #{uuid}
     </select>
     
     <select id="findbyid" parameterType="int"  resultType="MyGoods">
