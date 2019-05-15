@@ -18,7 +18,7 @@ public interface QuestionDao {
    
 
     /**
-     * 查找用户列表
+     * 获取所有题目
      *
      * @param map
      * @return
@@ -40,7 +40,7 @@ public interface QuestionDao {
     public int updateQuestion(Question question);
 
     /**
-     * 添加用户
+     * 添加题目
      *
      * @param Question
      * @return
@@ -48,7 +48,7 @@ public interface QuestionDao {
     public int addQuestion(Question question);
 
     /**
-     * 删除用户
+     * 删除题目
      *
      * @param id
      * @return

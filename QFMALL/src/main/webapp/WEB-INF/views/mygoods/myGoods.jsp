@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../common/head.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="qfUser" value="${sessionScope.qf_user}"></c:set>
 <html>
@@ -12,7 +13,6 @@
 	<script type="text/javascript" src="js/jquery-func.js"></script>
 	<script type="text/javascript" src="js/course/course.js"></script>
 <script type="text/javascript">
-	console.log("test mygoods~~~");
 	$.ajax({
         url: "mygoods/findAllGoods",
         type: "POST",
@@ -21,13 +21,14 @@
         dataType: "json",
         success: function (r) {
            if (r.resultCode == 200) {
-           		alert("获取课程成功" + r.message);
            		if(location.href.indexOf("#reloaded")==-1){
 		        location.href=location.href+"#reloaded";
 		        location.reload();
          	}
            } else {
            		alert(r.message);
+           		window.location.href = "/QFMALL/login.html";
+           		
              }
             }, error: function (r) {
                 alert(r.message);
@@ -43,66 +44,7 @@
 	<div id="main">
 <!-- Content -->
 		<div id="content">
-		<!-- Box -->
-			<div class="box">
-				<h2><span>已购课程</span></h2>
-				
-				<a href="#" class="see-all">See all articles in this category</a>
-				
-				<div class="cl">&nbsp;</div>
-				
-				<div class="posts">
-					<!-- Post -->
-				    <div class="post">
-				    	<div class="image">
-				    		<a href="#"><img src="/images/english1.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
-				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-					<!-- Post -->
-				   <div class="post last">
-				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-2.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Maecenas scelerisque sapien </a></h4>
-				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-				    <div class="cl">&nbsp;</div>
-					<!-- Post -->
-				    <div class="post">
-				    	<div class="image">
-				    		<a href="#"><img src="styles/css/images/post-3.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Cras ac ultrices ipsum. </a></h4>
-				    		<p>Vivamus adipiscing dui at turpis imperdiet congue. Fusce posuere augue et odio bibendum non dictum nisi posuere. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-					<!-- Post -->
-				    <div class="post last">
-				    	<div class="image">
-				    		<a href="#"><img src="/images/math1.jpg" alt="" /></a>
-				    	</div>
-				    	<div class="data">
-				    		<h4><a href="#">Nunc ac lorem id ipsum.</a></h4>
-				    		<p>Maecenas sodales auctor urna cursus facilisis. Cras rutrum justo id mi bibendum luctus. </p>
-				    	</div>
-				    </div>
-				    <!-- /Post -->
-					<div class="cl">&nbsp;</div>
-				</div>
-			</div>
-			<!-- /Box -->
-			
-				<!-- Box -->
+			<!-- Box -->
 				<div class="box">
 					<h2><span>已购买课程</span></h2>
 					<a href="#" class="see-all">查看更多</a>
@@ -124,19 +66,41 @@
 						    			<p id="mygoodsId" name="mygoodsId" value="${mygoods.id }">
 						    			<a>${mygoods.goodsPrice }￥</a>
 						    			<p>${mygoods.description } </p>
+						    			<a href="#" onclick="answerQuestion()">章节练习</a>
 						    		</div>
 						    </div>
 						    <!-- /Post -->
 						</c:forEach>
 					</div>
 				</div>
-			
+			<!-- /Box -->
 			<div class="cl">&nbsp;</div>	
 		</div>
 		<!-- /Content -->
 
 	</div>
 	<!-- /Main -->
+	<!-- 
+	<div id="dlg" class="easyui-dialog"
+		style="width: 620px;height:250px;padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<form id="add_form" method="post" >
+			<table cellspacing="8px">
+				<tr>
+					<td>课程类目：</td>
+					<td>
+						<select id="categoryId" name="categoryId">
+							<option value="">---请选择课程类目---</option>											
+						</select>
+				 		&nbsp;<font color="red">*</font>
+					</td>
+				</tr>
+				
+				
+			</table>
+		</form>
+	</div>
+	 -->
 <!--Footer Begin-->
 <div class="page_footer_container">
     <div class="page_center_wrapper">

@@ -1,5 +1,6 @@
 package cn.funwx.mall.controller.font;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +51,14 @@ public class MyGoodsController {
 	 @ResponseBody
 	 public Result addGoods(@PathVariable Integer id, HttpServletRequest request){
 		 System.out.println("addgoods~~~~~~~~~");
+		 List<MyGoods> mygoodsList = myGoodsService.findAllMyGoods();
+		 if (mygoodsList != null && mygoodsList.size() > 0) {
+			for(MyGoods myGoods : mygoodsList){
+				if (myGoods.getCourseId() == id) {
+					return ResultGenerator.genFailResult("该课程已购买");
+				}
+			}
+		}
 		 User user = (User) request.getSession().getAttribute(Constants.SESSION_USER);
 		 Course course = courseService.findCourseById(id);
 		 MyGoods myGoods = new MyGoods();
@@ -63,4 +72,6 @@ public class MyGoodsController {
 		 myGoodsService.addMyGoods(myGoods);
 		 return ResultGenerator.genSuccessResult();	
 	 }
+	 
+	 
 }

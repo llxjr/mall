@@ -67,6 +67,8 @@ public class UserLoginController {
     private static final String MYCOURSE_PAGE = "/course/course";
     /** 已购课程 */
     private static final String MYGOODS_PAGE = "/mygoods/myGoods";
+    /** 课程列表 */
+    private static final String QUESTION_PAGE = "/question/question";
 
     @RequestMapping("")
     public ModelAndView index() {
@@ -86,6 +88,11 @@ public class UserLoginController {
     @RequestMapping("/myGoods")
     public ModelAndView myGoods() {
         return new ModelAndView(MYGOODS_PAGE);
+    }
+    
+    @RequestMapping("/question")
+    public ModelAndView questionPage() {
+        return new ModelAndView(QUESTION_PAGE);
     }
 
     /**

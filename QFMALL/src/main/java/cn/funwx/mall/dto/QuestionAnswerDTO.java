@@ -1,45 +1,35 @@
 package cn.funwx.mall.dto;
 
-public class QuestionAnswerDTO {
+import cn.funwx.mall.pojo.Chapter;
+import cn.funwx.mall.pojo.Course;
+import cn.funwx.mall.pojo.Question;
+import cn.funwx.mall.pojo.QuestionAnswer;
 
-	private int id;
-	/** 关联的题目ID **/
-	private int questionId;
-	/** 答案或选项文本 **/
-	private String answer;
-	/** 是否正确 **/
-	private boolean correct;
-	/** 排序 **/
-	private int order;
-	
-	public int getId() {
-		return id;
+public class QuestionAnswerDTO extends QuestionAnswer{
+	private Question question;
+	private Chapter chapter;
+	private Course course;
+	public Question getQuestion() {
+		return question;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
-	public int getQuestionId() {
-		return questionId;
+	public Chapter getChapter() {
+		return chapter;
 	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
+	public void setChapter(Chapter chapter) {
+		this.chapter = chapter;
 	}
-	public String getAnswer() {
-		return answer;
+	public Course getCourse() {
+		return course;
 	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
-	public boolean isCorrect() {
-		return correct;
-	}
-	public void setCorrect(boolean correct) {
-		this.correct = correct;
-	}
-	public int getOrder() {
-		return order;
-	}
-	public void setOrder(int order) {
-		this.order = order;
+	@Override
+	public String toString() {
+		return "QuestionAnswerDTO [question=" + question  + ", chapter=" + chapter + ", course="
+				+ course + "]";
 	}
 }

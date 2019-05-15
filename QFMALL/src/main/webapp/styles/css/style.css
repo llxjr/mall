@@ -182,6 +182,25 @@ h4 { font-size:13px; line-height:13px; padding-bottom:4px; }
 h4 a { color:#425969; }
 #content .post .data p { padding-left:2px; }
 
+/* 单选框样式  */
+input[type="radio"] {
+    display: none;
+}
+input[type="radio"]+span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    border-radius: 50%;
+    border: 6px solid #999;
+    background-color: #ddd;
+}
+input[type="radio"]:checked+span {
+    border: 6px solid #00f;
+    background-color: #00ff00;
+}
+
+
 /* Sidebar */
 /*
 #sidebar { float:left; width:197px; padding:0 8px 0 10px; }

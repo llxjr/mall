@@ -88,7 +88,7 @@
             <div class="user_wrapper clearfix">
                 <a class="user_item" href="index">购物车(0)</a>
                 <a class="user_item" href="index">我的订单</a>
-                <a class="user_item last_user_item" href="myGoods.do">我的课程</a>
+                <a class="user_item last_user_item" href="myGoods.do">已购课程</a>
                	<a class="user_avatar" href="mypage"><img src="${qfUser.avatarUrl}" alt=""></a>
                 <c:if test="${qfUser == null }">
                     <a class="login_item" href="login.html">登录</a>
